@@ -1,8 +1,11 @@
 import React from 'react'
+import Userinfo from './components/admin/Userinfo'
 
 function App() {
   return (
-    <div>React App</div>
+    <div>
+      <Userinfo/>
+    </div>
   )
 }
 
