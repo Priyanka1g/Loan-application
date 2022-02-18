@@ -8,7 +8,7 @@ function Admin() {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<InfoGraphic />} />
+        <Route path="/info" element={<InfoGraphic />} />
         <Route path="/requests" element={<UsersList listName="requests" />} />
         <Route path="/borrowers" element={<UsersList listName="borrowers" />} />
       </Routes>
