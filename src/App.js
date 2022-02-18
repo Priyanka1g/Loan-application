@@ -7,6 +7,7 @@ function App() {
     <Router>
     {/* navbar will be common for all pages */}
       <Navbar />
+      {/* add routes here  */}
     </Router>
   )
 }
