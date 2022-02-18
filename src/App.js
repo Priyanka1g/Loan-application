@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import Admin from "./components/admin/Admin";
 
 function App() {
   return (
-    <div>React App</div>
-  )
+    <>
+      <Admin />
+    </>
+  );
 }
 
-export default App
+export default App;
