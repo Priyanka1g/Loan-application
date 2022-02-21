@@ -75,7 +75,6 @@ export default function Home() {
               Enter Customer Id and Password
             </h4>
             <form className="login"
-            
                  onSubmit={(e) => {
                     e.preventDefault()
                     console.log("checking........")
