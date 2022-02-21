@@ -1,4 +1,5 @@
 import React from "react";
+import classes from "./style.module.css";
 import { useState } from "react";
 import MonetizationOnRoundedIcon from "@mui/icons-material/MonetizationOnRounded";
 import EventNoteRoundedIcon from "@mui/icons-material/EventNoteRounded";
@@ -6,6 +7,7 @@ import CasesRoundedIcon from "@mui/icons-material/CasesRounded";
 import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
+import { ClassNames } from "@emotion/react";
 const axios = require("axios");
 
 export default function Home() {
@@ -14,7 +16,7 @@ export default function Home() {
     user_name: "",
     full_name: "",
     user_password: "",
-    email: ""
+    email: "",
   });
 
   const handleChange = (e) => {
@@ -35,70 +37,71 @@ export default function Home() {
   }));
   return (
     <>
-      <div className="header">
+      <div className={classes.header}>
         <p>Digital</p> <p>|</p> <p>Instant</p> <p>|</p> <p>Simple</p>
       </div>
-      <div className="content">
-        <div className="explanation">
-          <div className="c1">
-            <div className="icon">
+      <div className={classes.content}>
+        <div className={classes.explanation}>
+          <div className={classes.c1}>
+            <div className={classes.icon}>
               <MonetizationOnRoundedIcon
                 style={{ height: "50px", width: "80px" }}
               />
             </div>
-            <div className="cont">
+            <div className={classes.cont}>
               <p style={{ fontWeight: "bold" }}>GET LOANS IN THREE STEPS</p>
             </div>
           </div>
-          <div className="c1">
-            <div className="icon">
+          <div className={classes.c1}>
+            <div className={classes.icon}>
               <EventNoteRoundedIcon style={{ height: "50px", width: "80px" }} />
             </div>
-            <div className="cont">
+            <div className={classes.cont}>
               <p style={{ fontWeight: "bold" }}>CONVENIENT PROCESS</p>
             </div>
           </div>
-          <div className="c1">
-            <div className="icon">
+          <div className={classes.c1}>
+            <div className={classes.icon}>
               <CasesRoundedIcon style={{ height: "50px", width: "80px" }} />
             </div>
-            <div className="cont">
+            <div className={classes.cont}>
               <p style={{ fontWeight: "bold" }}>EXCLUSIVE BENEFITS</p>
             </div>
           </div>
         </div>
-        <div className="loginForm">
+        <div className={classes.loginForm}>
           <p style={{ textAlign: "center", fontFamily: "cursive" }}>
             LET US BEGIN
           </p>
-          <div className="form">
+          <div className={classes.form}>
             <h4 style={{ color: "#003049", textAlign: "center" }}>
               Enter Customer Id and Password
             </h4>
-            <form className="login"
-                onSubmit={(event) => {
-                    event.preventDefault();
-                    var data={
-                        user_id:parseInt(formData.id),
-                        user_name:formData.user_name,
-                        user_passward:formData.user_passward,
-                        email:formData.email,
-                        isAdmin:false
-                    }
-                    console.log(JSON.stringify(data));
-                    axios({
-                      method: "post",
-                      url: "http://localhost:8080/addUser",
-                      headers: {
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json',
-                        'Access-Control-Allow-Origin': '*',
-                      },
-                      data: JSON.stringify(data),
-                      success: window.alert("Added Successfully"),
-                    });
-                    // window.location.href="http://localhost:3000"
-                 }}
+            <form
+              className={classes.login}
+              onSubmit={(event) => {
+                event.preventDefault();
+                var data = {
+                  user_id: parseInt(formData.id),
+                  user_name: formData.user_name,
+                  user_passward: formData.user_passward,
+                  email: formData.email,
+                  isAdmin: false,
+                };
+                console.log(JSON.stringify(data));
+                axios({
+                  method: "post",
+                  url: "http://localhost:8080/addUser",
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                  },
+                  data: JSON.stringify(data),
+                  success: window.alert("Added Successfully"),
+                });
+                window.location.href = "http://localhost:3000";
+              }}
             >
               <TextField
                 required
@@ -148,10 +151,12 @@ export default function Home() {
                 onChange={handleChange}
               />
 
-              <div className="tc">
+              <div className={classes.tc}>
                 <small>Let's Register for Loan</small>
               </div>
-              <ColorButton variant="contained" type="submit">Register</ColorButton>
+              <ColorButton variant="contained" type="submit">
+                Register
+              </ColorButton>
             </form>
           </div>
         </div>

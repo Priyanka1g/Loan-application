@@ -3,6 +3,10 @@ import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
+import "../../css/applicationForm.css"
+import MonetizationOnRoundedIcon from "@mui/icons-material/MonetizationOnRounded";
+import EventNoteRoundedIcon from "@mui/icons-material/EventNoteRounded";
+import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 const axios = require("axios");
 
 export default function ApplicationForm() {
@@ -48,7 +52,7 @@ export default function ApplicationForm() {
         'Access-Control-Allow-Origin': '*',
       },
       data: JSON.stringify(data),
-      success: window.alert("Added Successfully"),
+      success: window.alert("Applied Successfully"),
     });
  }
 
@@ -62,11 +66,40 @@ export default function ApplicationForm() {
   }));
   return (
     <>
-      <div className="header">
+    
+    <div className="header">
         <p>Navbar component here</p>
       </div>
       <div className="content">
-        <div className="loginForm"  style={{width:"50vw", alignContent: "center" }}>
+        <div className="explanation">
+          <div className="c1">
+            <div className="icon">
+              <MonetizationOnRoundedIcon
+                style={{ height: "50px", width: "80px" }}
+              />
+            </div>
+            <div className="cont">
+              <p style={{ fontWeight: "bold" }}>Rate of Interest Starting at 10.12% per annum</p>
+            </div>
+          </div>
+          <div className="c1">
+            <div className="icon">
+              <AccountBalanceWalletIcon style={{ height: "50px", width: "80px" }} />
+            </div>
+            <div className="cont">
+              <p style={{ fontWeight: "bold" }}>Loan amount starting from 15,000 INR to 15,00,000 INR</p>
+            </div>
+          </div>
+          <div className="c1">
+            <div className="icon">
+              <EventNoteRoundedIcon style={{ height: "50px", width: "80px" }} />
+            </div>
+            <div className="cont">
+              <p style={{ fontWeight: "bold" }}>Tenure Ranging From 12 months to 60 months</p>
+            </div>
+          </div>
+        </div>
+        <div className="loginForm" >
           <h2 style={{ textAlign: "center" }}>
             APPLICATION FORM
           </h2>

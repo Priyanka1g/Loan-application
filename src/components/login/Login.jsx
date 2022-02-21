@@ -1,4 +1,5 @@
 import React from "react";
+import classes from "./style.module.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import MonetizationOnRoundedIcon from "@mui/icons-material/MonetizationOnRounded";
@@ -10,19 +11,18 @@ import Button from "@mui/material/Button";
 const axios = require("axios");
 
 export default function Home() {
-    const [formData, setFormData] = useState({
-        user_name: "",
-        user_password: ""
-      });
+  const [formData, setFormData] = useState({
+    user_name: "",
+    user_password: "",
+  });
 
-      const handleChange = (e) => {
-        setFormData({
-          ...formData,
-          [e.target.name]: e.target.value,
-        });
-        console.log(formData);
-      };
-
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+    console.log(formData);
+  };
 
   const ColorButton = styled(Button)(({ theme }) => ({
     color: theme.palette.getContrastText("#011638"),
@@ -34,53 +34,53 @@ export default function Home() {
   }));
   return (
     <>
-      <div className="header">
+      <div className={classes.header}>
         <p>Digital</p> <p>|</p> <p>Instant</p> <p>|</p> <p>Simple</p>
       </div>
-      <div className="content">
-        <div className="explanation">
-          <div className="c1">
-            <div className="icon">
+      <div className={classes.content}>
+        <div className={classes.explanation}>
+          <div className={classes.c1}>
+            <div className={classes.icon}>
               <MonetizationOnRoundedIcon
                 style={{ height: "50px", width: "80px" }}
               />
             </div>
-            <div className="cont">
+            <div className={classes.cont}>
               <p style={{ fontWeight: "bold" }}>GET LOANS IN THREE STEPS</p>
             </div>
           </div>
-          <div className="c1">
-            <div className="icon">
+          <div className={classes.c1}>
+            <div className={classes.icon}>
               <EventNoteRoundedIcon style={{ height: "50px", width: "80px" }} />
             </div>
-            <div className="cont">
+            <div className={classes.cont}>
               <p style={{ fontWeight: "bold" }}>CONVENIENT PROCESS</p>
             </div>
           </div>
-          <div className="c1">
-            <div className="icon">
+          <div className={classes.c1}>
+            <div className={classes.icon}>
               <CasesRoundedIcon style={{ height: "50px", width: "80px" }} />
             </div>
-            <div className="cont">
+            <div className={classes.cont}>
               <p style={{ fontWeight: "bold" }}>EXCLUSIVE BENEFITS</p>
             </div>
           </div>
         </div>
-        <div className="loginForm">
+        <div className={classes.loginForm}>
           <p style={{ textAlign: "center", fontFamily: "cursive" }}>
             LET US BEGIN
           </p>
-          <div className="form">
+          <div className={classes.form}>
             <h4 style={{ color: "#003049", textAlign: "center" }}>
               Enter Customer Id and Password
             </h4>
-            <form className="login"
-            
-                 onSubmit={(e) => {
-                    e.preventDefault()
-                    console.log("checking........")
-                    // window.location.href="http://localhost:3000/getUsers"
-                 }}
+            <form
+              className={classes.login}
+              onSubmit={(e) => {
+                e.preventDefault();
+                console.log("checking........");
+                window.location.href = "http://localhost:3000/applyloan";
+              }}
             >
               <TextField
                 required
@@ -111,10 +111,12 @@ export default function Home() {
                 {" "}
                 <a href="/register">Forget Password</a>{" "}
               </small>
-              <div className="tc">
+              <div className={classes.tc}>
                 <small>Let's Login for Loan</small>
               </div>
-              <ColorButton variant="contained" type="submit">LOG-IN</ColorButton>
+              <ColorButton variant="contained" type="submit">
+                LOG-IN
+              </ColorButton>
               <small style={{ color: "black", marginTop: "10px" }}>
                 New to Axis Bank <Link to="/register">Register</Link>{" "}
               </small>
