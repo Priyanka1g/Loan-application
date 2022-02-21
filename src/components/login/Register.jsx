@@ -70,9 +70,7 @@ export default function Home() {
           </div>
         </div>
         <div className={classes.loginForm}>
-          <p style={{ textAlign: "center", fontFamily: "cursive" }}>
-            LET US BEGIN
-          </p>
+          <p style={{ textAlign: "center" }}>LET US BEGIN</p>
           <div className={classes.form}>
             <h4 style={{ color: "#003049", textAlign: "center" }}>
               Enter Customer Id and Password
