@@ -79,7 +79,7 @@ export default function Home() {
                  onSubmit={(e) => {
                     e.preventDefault()
                     console.log("checking........")
-                    // window.location.href="http://localhost:3000/getUsers"
+                    window.location.href="http://localhost:3000/applyloan"
                  }}
             >
               <TextField
