@@ -1,0 +1,13 @@
+.table {
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.table > * {
+  background: var(--light-blue);
+}
+
+.actionButtons > * {
+  margin: 0 20px;
+}

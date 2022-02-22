@@ -5,15 +5,6 @@ body {
   background-image: url("https://www.transparenttextures.com/patterns/random-grey-variations.png");
   color: whitesmoke;
 }
-.header {
-  font-family: lato;
-  display: flex;
-  justify-content: space-evenly;
-  margin: auto;
-  width: 20%;
-  font-weight: bold;
-}
-
 .regfrom {
   padding: 10px;
   margin: auto;
