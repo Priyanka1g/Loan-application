@@ -1,9 +1,11 @@
 import React from "react";
+import classes from "./applicationForm.module.css";
+import Navbar from "./UserNavbar";
 import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
-import "../../css/applicationForm.css"
+// import "../../css/applicationForm.css"
 import MonetizationOnRoundedIcon from "@mui/icons-material/MonetizationOnRounded";
 import EventNoteRoundedIcon from "@mui/icons-material/EventNoteRounded";
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
@@ -67,44 +69,44 @@ export default function ApplicationForm() {
   return (
     <>
     
-    <div className="header">
-        <p>Navbar component here</p>
+    <div className={classes.header}>
+        <Navbar></Navbar>
       </div>
-      <div className="content">
-        <div className="explanation">
-          <div className="c1">
-            <div className="icon">
+      <div className={classes.content}>
+        <div className={classes.explanation}>
+          <div className={classes.c1}>
+            <div className={classes.icon}>
               <MonetizationOnRoundedIcon
                 style={{ height: "50px", width: "80px" }}
               />
             </div>
-            <div className="cont">
+            <div className={classes.cont}>
               <p style={{ fontWeight: "bold" }}>Rate of Interest Starting at 10.12% per annum</p>
             </div>
           </div>
-          <div className="c1">
-            <div className="icon">
+          <div className={classes.c1}>
+            <div className={classes.icon}>
               <AccountBalanceWalletIcon style={{ height: "50px", width: "80px" }} />
             </div>
-            <div className="cont">
+            <div className={classes.cont}>
               <p style={{ fontWeight: "bold" }}>Loan amount starting from 15,000 INR to 15,00,000 INR</p>
             </div>
           </div>
-          <div className="c1">
-            <div className="icon">
+          <div className={classes.c1}>
+            <div className={classes.icon}>
               <EventNoteRoundedIcon style={{ height: "50px", width: "80px" }} />
             </div>
-            <div className="cont">
+            <div className={classes.cont}>
               <p style={{ fontWeight: "bold" }}>Tenure Ranging From 12 months to 60 months</p>
             </div>
           </div>
         </div>
-        <div className="loginForm" >
+        <div className={classes.loginForm} >
           <h2 style={{ textAlign: "center" }}>
             APPLICATION FORM
           </h2>
-          <div className="form" style={{padding:"10px 40px"}}>
-            <form className="login"
+          <div className={classes.form} style={{padding:"10px 40px"}}>
+            <form className={classes.login}
                 onSubmit={handleSubmit}
             >
               <TextField
