@@ -1,11 +1,12 @@
 import React from "react";
 import classes from "./userinfo.module.css";
 import Useritem from "./Useritem";
+import bootstrap from "bootstrap";
 
 export default function Userinfo() {
   return (
     <div>
-      <div className={classes.body} className="container">
+      <div className={classes.body}>
         <h1
           style={{
             textAlign: "center",
