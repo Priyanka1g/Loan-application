@@ -5,7 +5,7 @@
 }
 
 .table > * {
-  background: var(--light-blue);
+  background: white;
 }
 
 .actionButtons > * {
