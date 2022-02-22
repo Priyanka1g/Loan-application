@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import InfoGraphic from "./adminComponents/InfoGraphic";
 import UsersList from "./adminComponents/UsersList";
 import Navbar from "./Navbar";
+import classes from "./index.module.css";
 
 function Admin() {
   return (
