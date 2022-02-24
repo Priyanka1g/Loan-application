@@ -5,21 +5,22 @@ import styled from "styled-components";
 export const Nav = styled.nav`
   background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");
   background-color: white;
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 10px;
   height: 57px;
   display: flex;
-  padding: 0.5rem ;
+  justify-content: space-between;
+  padding: 0.5rem;
   z-index: 10;
 `;
 
 export const NavLink = styled(Link)`
-  color: #5967d6;
+  color: #166ecb;
   display: flex;
   align-items: center;
   text-decoration: none;
   font-size: 17px;
   font-weight: bold;
-  padding: 0 4rem;
+  padding: 0 2rem;
   height: 100%;
   cursor: pointer;
   &.active {

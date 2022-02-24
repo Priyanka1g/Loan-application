@@ -1,11 +1,13 @@
-.table {
+.tableContainer {
   margin: 10px;
   display: flex;
   justify-content: center;
 }
 
-.table > * {
-  background: white;
+.table {
+  border-radius: 5px;
+  background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");
+  background-color: white;
 }
 
 .actionButtons > * {

@@ -110,106 +110,134 @@ export default function UsersList({ listName }) {
   };
 
   return (
-    <div className={classes.table}>
-      <Paper
-        sx={{
-          width: listName === "requests" ? "80%" : "70%",
-          overflow: "hidden",
-          backgroundColor: "var(--light-blue)",
-        }}
+    <div className={classes.tableContainer}>
+      <div
+        className={classes.table}
+        style={{ width: listName === "requests" ? "80%" : "70%" }}
       >
-        <TableContainer sx={{ maxHeight: 500 }}>
-          <Table stickyHeader aria-label="sticky table">
-            <TableHead sx={{ fontSize: 2 }}>
-              <TableRow>
-                <TableCell
-                  sx={{
-                    backgroundColor: "var(--blue)",
-                  }}
-                  key="serialNo"
-                  style={{ minWidth: 30 }}
-                >
-                  S.No.
-                </TableCell>
-                {columns.map((column) => (
-                  <TableCell
-                    sx={{
-                      backgroundColor: "var(--blue)",
-                    }}
-                    key={column.id}
-                    align={column.align}
-                    style={{ minWidth: column.minWidth }}
-                  >
-                    {column.label}
-                  </TableCell>
-                ))}
-                {listName === "requests" && (
-                  <TableCell
-                    sx={{
-                      backgroundColor: "var(--blue)",
-                    }}
-                    key="approveLoan"
-                    align="center"
-                    style={{ minWidth: 100 }}
-                  >
-                    Approve Loan
-                  </TableCell>
-                )}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => {
-                  return (
-                    <TableRow
-                      hover
-                      role="checkbox"
-                      tabIndex={-1}
-                      key={row.code}
-                    >
-                      <TableCell key={index}>{index + 1}</TableCell>
-                      {columns.map((column) => {
-                        const value = row[column.id];
-                        return (
-                          <TableCell key={column.id} align={column.align}>
-                            {column.format && typeof value === "number"
-                              ? column.format(value)
-                              : value}
-                          </TableCell>
-                        );
-                      })}
-                      {listName === "requests" && (
-                        <TableCell key="approveLoan" align="center">
-                          <div className={classes.actionButtons}>
-                            <Button variant="contained" color="success">
-                              Approve
-                            </Button>
-                            <Button variant="outlined" color="error">
-                              Reject
-                            </Button>
-                          </div>
-                        </TableCell>
-                      )}
-                    </TableRow>
-                  );
-                })}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
+        <Paper
           sx={{
-            backgroundColor: "var(--blue)",
+            overflow: "hidden",
+            backgroundColor: "transparent",
+            fontFamily: "Lato",
+            // backgroundColor: "var(--light-blue)",
+            // backgroundImage: "url(
+            //   "https://www.transparenttextures.com/patterns/beige-paper.png"
+            // )",
           }}
-          rowsPerPageOptions={[10, 25, 100]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-      </Paper>
+        >
+          <TableContainer sx={{ maxHeight: 480, fontFamily: "Lato" }}>
+            <Table
+              stickyHeader
+              aria-label="sticky table"
+              sx={{ fontFamily: "Lato" }}
+            >
+              <TableHead sx={{ fontSize: 2, fontFamily: "Lato" }}>
+                <TableRow>
+                  <TableCell
+                    sx={{
+                      backgroundColor: "var(--blue)",
+                      fontFamily: "Lato",
+                      color: "whitesmoke",
+                      fontSize: "20px",
+                    }}
+                    key="serialNo"
+                    style={{ minWidth: 30 }}
+                  >
+                    S.No.
+                  </TableCell>
+                  {columns.map((column) => (
+                    <TableCell
+                      sx={{
+                        backgroundColor: "var(--blue)",
+                        fontFamily: "Lato",
+                        color: "whitesmoke",
+                        fontSize: "20px",
+                      }}
+                      key={column.id}
+                      align={column.align}
+                      style={{ minWidth: column.minWidth }}
+                    >
+                      {column.label}
+                    </TableCell>
+                  ))}
+                  {listName === "requests" && (
+                    <TableCell
+                      sx={{
+                        backgroundColor: "var(--blue)",
+                        fontFamily: "Lato",
+                        color: "whitesmoke",
+                        fontSize: "20px",
+                      }}
+                      key="approveLoan"
+                      align="center"
+                      style={{ minWidth: 100 }}
+                    >
+                      Approve Loan
+                    </TableCell>
+                  )}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row, index) => {
+                    return (
+                      <TableRow
+                        hover
+                        role="checkbox"
+                        tabIndex={-1}
+                        key={row.code}
+                      >
+                        <TableCell key={index}>{index + 1}</TableCell>
+                        {columns.map((column) => {
+                          const value = row[column.id];
+                          return (
+                            <TableCell
+                              key={column.id}
+                              align={column.align}
+                              sx={{ fontFamily: "Lato", fontWeight: "800" }}
+                            >
+                              {column.format && typeof value === "number"
+                                ? column.format(value)
+                                : value}
+                            </TableCell>
+                          );
+                        })}
+                        {listName === "requests" && (
+                          <TableCell key="approveLoan" align="center">
+                            <div className={classes.actionButtons}>
+                              <Button
+                                variant="contained"
+                                sx={{ backgroundColor: "var(--blue)" }}
+                              >
+                                View
+                              </Button>
+                            </div>
+                          </TableCell>
+                        )}
+                      </TableRow>
+                    );
+                  })}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            sx={{
+              backgroundColor: "var(--blue)",
+              color: "whitesmoke",
+              fontFamily: "Lato",
+            }}
+            rowsPerPageOptions={[10, 25, 100]}
+            component="div"
+            count={rows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </Paper>
+      </div>
     </div>
   );
 }
