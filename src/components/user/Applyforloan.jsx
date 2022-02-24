@@ -1,8 +1,9 @@
 import loanimg from "./images/loan1-removebg-preview.png";
 import style from "./loanreqstyle.module.css";
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
+import UserContext from "../../store/userContext";
 import TextField from "@mui/material/TextField";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
 import { styled } from "@mui/material/styles";
@@ -26,6 +27,10 @@ export default function LoanReq() {
     });
     console.log(formData);
   };
+
+  const ctx = useContext(UserContext);
+  console.log("ctx == ")
+  console.log(ctx)
 
   const ColorButton = styled(Button)(({ theme }) => ({
     color: theme.palette.getContrastText("#7b0d1e"),

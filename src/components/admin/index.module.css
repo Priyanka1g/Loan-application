@@ -1,0 +1,15 @@
+
+
+:root {
+  --light-blue: #a6b0ff;
+  --blue: #6775eb;
+}
+
+
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--blue);
+}

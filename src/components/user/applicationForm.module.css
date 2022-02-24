@@ -6,6 +6,7 @@ body {
   color: whitesmoke;
 }
 .header {
+  font-family: lato;
   display: flex;
   justify-content: space-evenly;
   margin: auto;
@@ -30,6 +31,7 @@ a {
 }
 
 .c1 {
+  font-family: lato;
   display: flex;
   align-items: center;
   width: 90%;
@@ -55,6 +57,7 @@ a {
   margin: auto;
   margin-top: 20px;
   height: fit-content;
+  width: 150%;
   background-color: white;
   background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");
   border-radius: 10px 10px 10px 10px;
@@ -72,8 +75,7 @@ a {
 
 .content {
   display: flex;
-  margin: auto;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   width: 80%;
 }
@@ -110,15 +112,3 @@ a {
     align-items: center;
   }
 }
-
-/* --------------------------------------------------------- */
-
-/* 
-  
-  *::-webkit-scrollbar {
-    width: 5px;
-  }
-  
-  *::-webkit-scrollbar-thumb {
-    background: var(--blue);
-  } */

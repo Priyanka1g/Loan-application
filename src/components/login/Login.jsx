@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import classes from "./style.module.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -7,6 +7,7 @@ import EventNoteRoundedIcon from "@mui/icons-material/EventNoteRounded";
 import CasesRoundedIcon from "@mui/icons-material/CasesRounded";
 import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
+import UserContext from "../../store/userContext";
 import Button from "@mui/material/Button";
 const axios = require("axios");
 
@@ -15,6 +16,8 @@ export default function Home() {
     user_name: "",
     user_password: "",
   });
+
+  const ctx = useContext(UserContext);
 
   const handleChange = (e) => {
     setFormData({
@@ -67,9 +70,7 @@ export default function Home() {
           </div>
         </div>
         <div className={classes.loginForm}>
-          <p style={{ textAlign: "center", fontFamily: "cursive" }}>
-            LET US BEGIN
-          </p>
+          <p style={{ textAlign: "center" }}>LET US BEGIN</p>
           <div className={classes.form}>
             <h4 style={{ color: "#003049", textAlign: "center" }}>
               Enter Customer Id and Password
@@ -78,8 +79,36 @@ export default function Home() {
               className={classes.login}
               onSubmit={(e) => {
                 e.preventDefault();
-                console.log("checking........");
-                window.location.href = "http://localhost:3000/applyloan";
+                var data = {
+                  user_name: formData.user_name,
+                  user_password: formData.user_password,
+                };
+
+                var x = axios({
+                  method: "POST",
+                  url: "http://localhost:8080/loginCheck",
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                  },
+                  data: JSON.stringify(data),
+                }).then(function (res) {
+                  console.log(res.data);
+                  // ctx.setUserData(res.data);
+                  // console.log(ctx.userData)
+
+                  window.localStorage.setItem("userData",res.data)
+
+                  if (res.data[0] == 1 && res.data[2] == 1) {
+                    window.location.href = "http://localhost:3000/admin/info";
+                  } else if (res.data[0] == 1 && res.data[2] == 0) {
+                    window.location.href = "http://localhost:3000/applyloan";
+                  } else {
+                    window.alert("Np Account Exists");
+                    window.location.href = "http://localhost:3000/register";
+                  }
+                });
               }}
             >
               <TextField

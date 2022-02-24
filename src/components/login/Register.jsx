@@ -7,7 +7,6 @@ import CasesRoundedIcon from "@mui/icons-material/CasesRounded";
 import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
-import { ClassNames } from "@emotion/react";
 const axios = require("axios");
 
 export default function Home() {
@@ -70,9 +69,7 @@ export default function Home() {
           </div>
         </div>
         <div className={classes.loginForm}>
-          <p style={{ textAlign: "center", fontFamily: "cursive" }}>
-            LET US BEGIN
-          </p>
+          <p style={{ textAlign: "center" }}>LET US BEGIN</p>
           <div className={classes.form}>
             <h4 style={{ color: "#003049", textAlign: "center" }}>
               Enter Customer Id and Password
@@ -82,15 +79,14 @@ export default function Home() {
               onSubmit={(event) => {
                 event.preventDefault();
                 var data = {
-                  user_id: parseInt(formData.id),
                   user_name: formData.user_name,
-                  user_passward: formData.user_passward,
+                  user_password: formData.user_password,
                   email: formData.email,
-                  isAdmin: false,
+                  isAdmin: 0,
                 };
                 console.log(JSON.stringify(data));
                 axios({
-                  method: "post",
+                  method: "POST",
                   url: "http://localhost:8080/addUser",
                   headers: {
                     Accept: "application/json",
@@ -103,15 +99,6 @@ export default function Home() {
                 window.location.href = "http://localhost:3000";
               }}
             >
-              <TextField
-                required
-                id="standard-required"
-                name="id"
-                label="User ID"
-                variant="standard"
-                value={formData.id}
-                onChange={handleChange}
-              />
               <TextField
                 required
                 id="standard-required"
