@@ -1,5 +1,7 @@
+import { Button } from "@mui/material";
 import React from "react";
 import { Nav, NavLink, Bars, NavMenu } from "./NavbarElements.js";
+import { styled } from "@mui/material/styles";
 import classes from "./Navbar.module.css";
 
 const Navbar = () => {
@@ -19,6 +21,11 @@ const Navbar = () => {
             Pending applications
           </NavLink>
           <NavLink to="/admin/borrowers">Borrowers</NavLink>
+          <NavLink to="#" activeStyle>
+            <Button sx={{}} variant="outlined">
+              Logout
+            </Button>
+          </NavLink>
         </NavMenu>
       </Nav>
     </>
