@@ -86,7 +86,7 @@ export default function Home() {
 
                 var x = axios({
                   method: "POST",
-                  url: "http://localhost:8080/loginCheck",
+                  url: "http://localhost:8081/loginCheck",
                   headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json",
