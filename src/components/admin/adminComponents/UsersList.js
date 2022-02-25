@@ -108,9 +108,7 @@ export default function UsersList({ listName }) {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-    useEffect{()=>{
-          
-    }}
+  
   return (
     <div className={classes.tableContainer}>
       <div
