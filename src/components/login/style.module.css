@@ -4,7 +4,12 @@ body {
   background-color: #082f58;
   background-image: url("https://www.transparenttextures.com/patterns/random-grey-variations.png");
   color: whitesmoke;
+  font-family: 'Sora', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
+
 .header {
   display: flex;
   justify-content: space-evenly;

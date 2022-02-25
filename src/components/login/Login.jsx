@@ -86,7 +86,7 @@ export default function Home() {
 
                 var x = axios({
                   method: "POST",
-                  url: "http://localhost:8080/loginCheck",
+                  url: "http://localhost:8081/loginCheck",
                   headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json",
@@ -99,10 +99,10 @@ export default function Home() {
                   // console.log(ctx.userData)
 
                   window.localStorage.setItem("userData",res.data)
-
-                  if (res.data[0] == 1 && res.data[2] == 1) {
+                  
+                  if (res.data[0] === 1 && res.data[2] === 1) {
                     window.location.href = "http://localhost:3000/admin/info";
-                  } else if (res.data[0] == 1 && res.data[2] == 0) {
+                  } else if (res.data[0] === 1 && res.data[2] === 0) {
                     window.location.href = "http://localhost:3000/applyloan";
                   } else {
                     window.alert("Np Account Exists");

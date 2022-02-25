@@ -16,6 +16,7 @@ const axios = require("axios");
 
 export default function ApplicationForm() {
   const [applicationData, setApplicationData] = useState({
+    id:"",
     income: "",
     cibil: "",
     assets: "",
@@ -25,8 +26,10 @@ export default function ApplicationForm() {
     duration:""
   });
 
-  const [agree, setAgree] = useState(false);
 
+
+  const [agree, setAgree] = useState(false);
+  
   const handleChange = (e) => {
     setApplicationData({
       ...applicationData,
@@ -37,32 +40,39 @@ export default function ApplicationForm() {
     setAgree(!agree)
   }
 
-  console.log(window.localStorage.getItem("userData"))
+  // console.log(window.localStorage.getItem("userData"))
+ const responseData = window.localStorage.getItem("userData")
+ console.log(responseData)
 
   const handleSubmit=(event) => {
     event.preventDefault();
     var data={
-        user_income:parseInt(applicationData.income),
-        cibil_score: parseInt(applicationData.cibil),
+      
+        customer_id:responseData[2],
+        user_income:applicationData.income,
+        cibil_score: applicationData.cibil,
         user_assets: applicationData.assets,
         loan_purpose: applicationData.purpose,
-        loan_amount: parseInt(applicationData.loan_amount),
+        loan_amount: applicationData.loan_amount,
         mortage:applicationData.mortage,
-        duration: parseFloat(applicationData.duration)
+        duration: applicationData.duration, 
+        isAdmin:responseData[5]
     }
     console.log(JSON.stringify(data));
     axios({
-      method: "post",
-      // url: "http://localhost:8080/addUser"  url to add data to database,
+      method: "POST",
+      url: "http://localhost:8081/addUserDetails",
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
       },
       data: JSON.stringify(data),
-      success: window.alert("Applied Successfully"),
+      success: window.alert("Added Successfully"),
     });
- }
+    window.location.href = "http://localhost:3000/home";
+  }
+   
 
   const ColorButton = styled(Button)(({ theme }) => ({
     color: theme.palette.getContrastText("#011638"),
@@ -73,11 +83,11 @@ export default function ApplicationForm() {
     },
   }));
   return (
+    
     <>
     
-    <div className={classes.header}>
+    
         <Navbar></Navbar>
-      </div>
       <div className={classes.content}>
         <div className={classes.explanation}>
           <div className={classes.c1}>
@@ -179,7 +189,7 @@ export default function ApplicationForm() {
               />
               <div style={{color: "#6b5c5b", marginTop:"10px"}}>
                   <input type="checkbox" onClick={handleCheck} />I have read and accept <a href="#">Term and Conditions</a></div>
-              <ColorButton disabled={!agree} variant="contained" type="submit">SUBMIT</ColorButton>
+              <ColorButton disabled={!agree} variant="contained" type="submit" >SUBMIT</ColorButton>
             </form>
           </div>
         </div>
