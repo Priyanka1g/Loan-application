@@ -5,6 +5,7 @@ body {
   background-image: url("https://www.transparenttextures.com/patterns/random-grey-variations.png");
   color: whitesmoke;
 }
+
 .header {
   font-family: lato;
   display: flex;

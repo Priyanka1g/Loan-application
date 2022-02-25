@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -108,7 +108,9 @@ export default function UsersList({ listName }) {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-
+    useEffect{()=>{
+          
+    }}
   return (
     <div className={classes.tableContainer}>
       <div
