@@ -87,7 +87,7 @@ export default function Home() {
                 console.log(JSON.stringify(data));
                 axios({
                   method: "POST",
-                  url: "http://localhost:8080/addUser",
+                  url: "http://localhost:8081/addUser",
                   headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json",
