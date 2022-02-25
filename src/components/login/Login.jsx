@@ -7,7 +7,7 @@ import EventNoteRoundedIcon from "@mui/icons-material/EventNoteRounded";
 import CasesRoundedIcon from "@mui/icons-material/CasesRounded";
 import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
-import UserContext from "../../store/userContext";
+import UserContext from "../../store/UserContext";
 import Button from "@mui/material/Button";
 const axios = require("axios");
 
@@ -38,7 +38,25 @@ export default function Login(props) {
   return (
     <>
       <div className={classes.header}>
-        <p>Digital</p> <p>|</p> <p>Instant</p> <p>|</p> <p>Simple</p>
+        <p>
+          {" "}
+          <a
+            href="/"
+            style={{ float: "left", color: "white", textDecoration: "none" }}
+          >
+            Home
+          </a>
+        </p>{" "}
+        <p>|</p>{" "}
+        <p>
+          {" "}
+          <a
+            href="/register"
+            style={{ float: "left", color: "white", textDecoration: "none" }}
+          >
+            Register
+          </a>
+        </p>
       </div>
       <div className={classes.content}>
         <div className={classes.explanation}>
@@ -84,7 +102,7 @@ export default function Login(props) {
                   user_password: formData.user_password,
                 };
 
-                console.log("local == "+localStorage.getItem("userData"))
+                console.log("local == " + localStorage.getItem("userData"));
 
                 var x = axios({
                   method: "POST",
@@ -98,18 +116,14 @@ export default function Login(props) {
                 }).then(function (res) {
                   console.log(res.data);
                   ctx.setUserData(res.data[0]);
-                  console.log(ctx.userData)
+                  console.log(ctx.userData);
 
-                  window.localStorage.setItem("userData",res.data)
-                  
+                  window.localStorage.setItem("userData", res.data);
 
                   if (res.data[0] === 1 && res.data[2] === 1) {
-                    props.adminlogin()
-                    // window.location.href = "http://localhost:3000/admin/requests";
+                    props.adminlogin();
                   } else if (res.data[0] === 1 && res.data[2] === 0) {
-                    
-                    props.userlogin()
-                    // window.location.href = "http://localhost:3000/applyloan";
+                    props.userlogin();
                   } else {
                     window.alert("No Account Exists");
                     window.location.href = "http://localhost:3000/register";

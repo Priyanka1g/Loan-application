@@ -4,7 +4,8 @@ import Register from "./components/login/Register";
 import Apply from "./components/user/ApplicationForm";
 import Applyforloan from "./components/user/Applyforloan";
 import Admin from "./components/admin/Admin";
-import { UserContextProvider } from "./store/userContext";
+import { UserContextProvider } from "./store/UserContext";
+import { LoanContextProvider } from "./store/LoanContext";
 import UserHomePage from "./components/user/UserHomePage";
 import { useState } from "react";
 import Home from "./components/login/Home";
@@ -23,7 +24,8 @@ function App() {
   }
 
   return (
-    <UserContextProvider>
+    <LoanContextProvider>
+      <UserContextProvider>
       <div className="App">
       <BrowserRouter>
       <Routes>
@@ -36,6 +38,7 @@ function App() {
     </BrowserRouter>
     </div>
     </UserContextProvider>
+    </LoanContextProvider>
   );
 }
 

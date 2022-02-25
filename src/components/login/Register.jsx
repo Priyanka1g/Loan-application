@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./style.module.css";
 import { useState } from "react";
-import UserContext from "../../store/userContext";
+import UserContext from "../../store/UserContext";
 import MonetizationOnRoundedIcon from "@mui/icons-material/MonetizationOnRounded";
 import EventNoteRoundedIcon from "@mui/icons-material/EventNoteRounded";
 import CasesRoundedIcon from "@mui/icons-material/CasesRounded";
@@ -43,7 +43,25 @@ export default function Home() {
   return (
     <>
       <div className={classes.header}>
-        <p>Digital</p> <p>|</p> <p>Instant</p> <p>|</p> <p>Simple</p>
+      <p>
+          {" "}
+          <a
+            href="/"
+            style={{ float: "left", color: "white", textDecoration: "none" }}
+          >
+            Home
+          </a>
+        </p>{" "}
+        <p>|</p>{" "}
+        <p>
+          {" "}
+          <a
+            href="/applyloan"
+            style={{ float: "left", color: "white", textDecoration: "none" }}
+          >
+            Login
+          </a>
+        </p>
       </div>
       <div className={classes.content}>
         <div className={classes.explanation}>

@@ -4,7 +4,7 @@ import Navbar from "./UserNavbar";
 import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
-import UserContext from "../../store/userContext";
+import UserContext from "../../store/UserContext";
 import TextField from "@mui/material/TextField";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
 import { styled } from "@mui/material/styles";
@@ -30,6 +30,9 @@ export default function LoanReq() {
   };
 
   console.log(localStorage.getItem("userData"))
+  const ctx = useContext(UserContext);
+  console.log("ctx == ");
+  console.log(ctx);
 
   const ColorButton = styled(Button)(({ theme }) => ({
     color: theme.palette.getContrastText("#7b0d1e"),
