@@ -121,7 +121,7 @@ export default function Home() {
                   data: JSON.stringify(data),
                   success: window.alert("Added Successfully"),
                 });
-                window.location.href = "http://localhost:3000";
+                window.location.href = "http://localhost:3000/applyloan";
               }}
             >
               <TextField

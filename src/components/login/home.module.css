@@ -31,7 +31,7 @@
     padding-right: 8px;
 }
 
-a:hover{
+.nav a:hover{
     background-color: aquamarine;
     color: black;
 }
