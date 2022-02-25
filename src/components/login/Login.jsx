@@ -7,7 +7,7 @@ import EventNoteRoundedIcon from "@mui/icons-material/EventNoteRounded";
 import CasesRoundedIcon from "@mui/icons-material/CasesRounded";
 import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
-import UserContext from "../../store/userContext";
+import UserContext from "../../store/UserContext";
 import Button from "@mui/material/Button";
 const axios = require("axios");
 
@@ -98,8 +98,8 @@ export default function Home() {
                   // ctx.setUserData(res.data);
                   // console.log(ctx.userData)
 
-                  window.localStorage.setItem("userData",res.data)
-                  
+                  window.localStorage.setItem("userData", res.data);
+
                   if (res.data[0] === 1 && res.data[2] === 1) {
                     window.location.href = "http://localhost:3000/admin/info";
                   } else if (res.data[0] === 1 && res.data[2] === 0) {

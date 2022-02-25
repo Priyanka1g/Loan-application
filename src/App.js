@@ -4,24 +4,27 @@ import Register from "./components/login/Register";
 import Apply from "./components/user/ApplicationForm";
 import Applyforloan from "./components/user/Applyforloan";
 import Admin from "./components/admin/Admin";
-import { UserContextProvider } from "./store/userContext";
+import { UserContextProvider } from "./store/UserContext";
+import { LoanContextProvider } from "./store/LoanContext";
 import UserHomePage from "./components/user/UserHomePage";
 
 function App() {
   return (
-    <UserContextProvider>
-      <div className="App">
-      <BrowserRouter>
-      <Routes>
-        <Route exact path="/" element={<Login ></Login>} />
-        <Route exact path="/register" element={<Register></Register>}/>
-        <Route exact path="/applyloan" element={<Apply></Apply>}/>
-        <Route path="/admin/*" element={<Admin/>}/>
-        <Route exact path="/home" element={<UserHomePage/>}/>
-      </Routes>
-    </BrowserRouter>
-    </div>
-    </UserContextProvider>
+    <LoanContextProvider>
+      <UserContextProvider>
+        <div className="App">
+          <BrowserRouter>
+            <Routes>
+              <Route exact path="/" element={<Login></Login>} />
+              <Route exact path="/register" element={<Register></Register>} />
+              <Route exact path="/applyloan" element={<Apply></Apply>} />
+              <Route path="/admin/*" element={<Admin />} />
+              <Route exact path="/home" element={<UserHomePage />} />
+            </Routes>
+          </BrowserRouter>
+        </div>
+      </UserContextProvider>
+    </LoanContextProvider>
   );
 }
 
