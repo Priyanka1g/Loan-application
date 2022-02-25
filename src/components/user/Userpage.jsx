@@ -58,6 +58,12 @@ const rows = [
   createData("8934759823", "Nikhil Lallar", "60,000", "approved"),
   createData("8934759823", "Nikhil Lallar", "60,000", "approved"),
   createData("8934759823", "Nikhil Lallar", "60,000", "approved"),
+  createData("8934759823", "Nikhil Lallar", "60,000", "approved"),
+  createData("8934759823", "Nikhil Lallar", "60,000", "approved"),
+  createData("8934759823", "Nikhil Lallar", "60,000", "approved"),
+  createData("8934759823", "Nikhil Lallar", "60,000", "approved"),
+  createData("8934759823", "Nikhil Lallar", "60,000", "approved"),
+  createData("8934759823", "Nikhil Lallar", "60,000", "approved"),
 ];
 
 export default function Userpage() {
