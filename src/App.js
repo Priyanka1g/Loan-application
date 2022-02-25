@@ -6,17 +6,31 @@ import Applyforloan from "./components/user/Applyforloan";
 import Admin from "./components/admin/Admin";
 import { UserContextProvider } from "./store/userContext";
 import UserHomePage from "./components/user/UserHomePage";
+import { useState } from "react";
+import Home from "./components/login/Home";
 
 function App() {
+
+  const [userlogin,setuserlogin]=useState(false)
+  const [adminlogin,setadminlogin]=useState(false)
+
+  function loginhandler(){
+    setuserlogin(true)
+  }
+
+  function adminloginhandler(){
+    setadminlogin(true)
+  }
+
   return (
     <UserContextProvider>
       <div className="App">
       <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<Login ></Login>} />
+        <Route exact path="/" element={<Home></Home>} />
         <Route exact path="/register" element={<Register></Register>}/>
-        <Route exact path="/applyloan" element={<Apply></Apply>}/>
-        <Route path="/admin/*" element={<Admin/>}/>
+        <Route exact path="/applyloan" element={userlogin?<Apply></Apply>:<Login userlogin={loginhandler} adminlogin={adminloginhandler}></Login>}/>
+        <Route path="/admin/*" element={adminlogin?<Admin/>:<Login userlogin={loginhandler} adminlogin={adminloginhandler} ></Login>}/>
         <Route exact path="/home" element={<UserHomePage/>}/>
       </Routes>
     </BrowserRouter>

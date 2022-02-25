@@ -1,12 +1,14 @@
 import React from "react";
 import classes from "./style.module.css";
 import { useState } from "react";
+import UserContext from "../../store/userContext";
 import MonetizationOnRoundedIcon from "@mui/icons-material/MonetizationOnRounded";
 import EventNoteRoundedIcon from "@mui/icons-material/EventNoteRounded";
 import CasesRoundedIcon from "@mui/icons-material/CasesRounded";
 import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
+import { useContext } from "react";
 const axios = require("axios");
 
 export default function Home() {
@@ -34,6 +36,10 @@ export default function Home() {
       backgroundColor: "#011638",
     },
   }));
+
+  const ctx=useContext(UserContext)
+  console.log(ctx.userData)
+
   return (
     <>
       <div className={classes.header}>
@@ -68,6 +74,7 @@ export default function Home() {
             </div>
           </div>
         </div>
+        
         <div className={classes.loginForm}>
           <p style={{ textAlign: "center" }}>LET US BEGIN</p>
           <div className={classes.form}>
@@ -87,7 +94,7 @@ export default function Home() {
                 console.log(JSON.stringify(data));
                 axios({
                   method: "POST",
-                  url: "http://localhost:8081/addUser",
+                  url: "http://localhost:8080/addUser",
                   headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json",

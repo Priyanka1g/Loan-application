@@ -11,7 +11,7 @@ import UserContext from "../../store/userContext";
 import Button from "@mui/material/Button";
 const axios = require("axios");
 
-export default function Home() {
+export default function Login(props) {
   const [formData, setFormData] = useState({
     user_name: "",
     user_password: "",
@@ -84,9 +84,11 @@ export default function Home() {
                   user_password: formData.user_password,
                 };
 
+                console.log("local == "+localStorage.getItem("userData"))
+
                 var x = axios({
                   method: "POST",
-                  url: "http://localhost:8081/loginCheck",
+                  url: "http://localhost:8080/loginCheck",
                   headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json",
@@ -95,17 +97,21 @@ export default function Home() {
                   data: JSON.stringify(data),
                 }).then(function (res) {
                   console.log(res.data);
-                  // ctx.setUserData(res.data);
-                  // console.log(ctx.userData)
+                  ctx.setUserData(res.data[0]);
+                  console.log(ctx.userData)
 
                   window.localStorage.setItem("userData",res.data)
                   
+
                   if (res.data[0] === 1 && res.data[2] === 1) {
-                    window.location.href = "http://localhost:3000/admin/info";
+                    props.adminlogin()
+                    // window.location.href = "http://localhost:3000/admin/requests";
                   } else if (res.data[0] === 1 && res.data[2] === 0) {
-                    window.location.href = "http://localhost:3000/applyloan";
+                    
+                    props.userlogin()
+                    // window.location.href = "http://localhost:3000/applyloan";
                   } else {
-                    window.alert("Np Account Exists");
+                    window.alert("No Account Exists");
                     window.location.href = "http://localhost:3000/register";
                   }
                 });

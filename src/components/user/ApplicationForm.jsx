@@ -40,6 +40,10 @@ export default function ApplicationForm() {
     setAgree(!agree)
   }
 
+  const ctx = useContext(UserContext);
+
+  console.log("ctx="+ctx[0])
+
   // console.log(window.localStorage.getItem("userData"))
  const responseData = window.localStorage.getItem("userData")
  console.log(responseData)
@@ -61,7 +65,7 @@ export default function ApplicationForm() {
     console.log(JSON.stringify(data));
     axios({
       method: "POST",
-      url: "http://localhost:8081/addUserDetails",
+      url: "http://localhost:8080/addUserDetails",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -70,7 +74,6 @@ export default function ApplicationForm() {
       data: JSON.stringify(data),
       success: window.alert("Added Successfully"),
     });
-    window.location.href = "http://localhost:3000/home";
   }
    
 
