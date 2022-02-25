@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import LoanContext from "../../../store/LoanContext.js";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -9,8 +10,16 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Button from "@mui/material/Button";
 import classes from "./UsersList.module.css";
+import { ContactsOutlined } from "@mui/icons-material";
+const axios = require("axios");
 
 const columns = [
+  {
+    id: "serialNo",
+    label: "S.No",
+    minWidth: 80,
+    format: (value) => value.toLocaleString("en-US"),
+  },
   {
     id: "name",
     label: "Name",
@@ -24,8 +33,8 @@ const columns = [
     format: (value) => value.toLocaleString("en-US"),
   },
   {
-    id: "loanAmount",
-    label: "Loan Amount",
+    id: "cibilScore",
+    label: "Cibil Score",
     minWidth: 80,
     align: "right",
     format: (value) => value.toFixed(2),
@@ -39,66 +48,16 @@ const columns = [
   },
 ];
 
-function createData(name, email, loanAmount, loanType) {
-  return { name, email, loanAmount, loanType };
+function createData(serialNo, name, email, cibilScore, loanType) {
+  return { serialNo, name, email, cibilScore, loanType };
 }
-
-const rows = [
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-];
 
 export default function UsersList({ listName }) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [loanApplications,setLoanApplications]=useState([]);
+  const loanCtx = useContext(LoanContext);
+
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -108,9 +67,51 @@ export default function UsersList({ listName }) {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-    useEffect=()=>{
 
-    }
+  useEffect(() => {
+    // let rows = [{
+    //   serialNo:2,
+    //   name: "Tarcvbnmun",
+    //   email:"ghj@fgh.com",
+    //   cibilScore:34,
+    //   loanType:"Car Loan"
+    // }];
+    let rows= [createData(2,"Tarun","tarun@gmail.com",56,"Education Loan")];
+    axios({
+      method: "GET",
+      url: "http://localhost:8080/getallUserDetails",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    }).then((res) => {
+      console.log(res.data);
+      res.data.map((loan,index)=>{
+          axios({
+            method: "GET",
+            url: "http://localhost:8080/getuser/"+loan.customer_id,
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+          }).then((result)=>{
+            console.log(result);
+            rows.unshift({
+              serialNo: index + 1,
+              name: result.data.user_name,
+              email: result.data.email,
+              cibilScore: loan.cibil_score,
+              loanType: loan.loan_purpose
+            })
+          })
+      })
+    });
+    setLoanApplications(rows);
+  },[]);
+
+  console.log("loanApplications",loanApplications);
   return (
     <div className={classes.tableContainer}>
       <div
@@ -122,10 +123,6 @@ export default function UsersList({ listName }) {
             overflow: "hidden",
             backgroundColor: "transparent",
             fontFamily: "Lato",
-            // backgroundColor: "var(--light-blue)",
-            // backgroundImage: "url(
-            //   "https://www.transparenttextures.com/patterns/beige-paper.png"
-            // )",
           }}
         >
           <TableContainer sx={{ maxHeight: 480, fontFamily: "Lato" }}>
@@ -136,7 +133,7 @@ export default function UsersList({ listName }) {
             >
               <TableHead sx={{ fontSize: 2, fontFamily: "Lato" }}>
                 <TableRow>
-                  <TableCell
+                  {/* <TableCell
                     sx={{
                       backgroundColor: "var(--blue)",
                       fontFamily: "Lato",
@@ -147,7 +144,7 @@ export default function UsersList({ listName }) {
                     style={{ minWidth: 30 }}
                   >
                     S.No.
-                  </TableCell>
+                  </TableCell> */}
                   {columns.map((column) => (
                     <TableCell
                       sx={{
@@ -175,13 +172,13 @@ export default function UsersList({ listName }) {
                       align="center"
                       style={{ minWidth: 100 }}
                     >
-                      Approve Loan
+                      View Details
                     </TableCell>
                   )}
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows
+                {loanApplications
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row, index) => {
                     return (
@@ -189,9 +186,9 @@ export default function UsersList({ listName }) {
                         hover
                         role="checkbox"
                         tabIndex={-1}
-                        key={row.code}
+                        key={row.serialNo}
                       >
-                        <TableCell key={index}>{index + 1}</TableCell>
+                        {/* <TableCell key={index}>{index + 1}</TableCell> */}
                         {columns.map((column) => {
                           const value = row[column.id];
                           return (
@@ -232,7 +229,7 @@ export default function UsersList({ listName }) {
             }}
             rowsPerPageOptions={[10, 25, 100]}
             component="div"
-            count={rows.length}
+            count={loanApplications.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}
