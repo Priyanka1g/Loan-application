@@ -121,8 +121,8 @@ export default function Login(props) {
                   window.localStorage.setItem("userData", res.data);
 
                   if (res.data[0] === 1 && res.data[2] === 1) {
-                    window.location.href = "http://localhost:3000/admin/home";
                     props.adminlogin();
+                    // window.location.href = "http://localhost:3000/admin/home";
                   } else if (res.data[0] === 1 && res.data[2] === 0) {
                     props.userlogin();
                   } else {
