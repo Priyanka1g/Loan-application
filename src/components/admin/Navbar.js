@@ -21,8 +21,10 @@ const Navbar = () => {
             Pending applications
           </NavLink>
           <NavLink to="/admin/borrowers">Borrowers</NavLink>
-          <NavLink to="#" activeStyle>
-            <Button sx={{}} variant="outlined">
+          <NavLink to="/admin/requests" activeStyle>
+            <Button sx={{}} variant="outlined" onClick={()=>{
+              window.location.href="http://localhost:3000/admin/requests"
+            }}>
               Logout
             </Button>
           </NavLink>

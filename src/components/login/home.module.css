@@ -1,0 +1,37 @@
+
+
+.Link{
+    color: white;
+}
+
+.nav{
+    display: flex;
+    justify-content: space-evenly;
+    height: 10vh;
+    align-items: center;
+    background-color: black;
+    box-shadow: -2px 6px 26px 0px rgba(0,0,0,0.75);
+}
+
+.nav .icon{
+    font-size: 1.8em;
+    font-weight: bolder;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+.nav a{
+    color: white;
+    text-decoration: none;
+    font-size: 1.4em;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.nav a:hover{
+    background-color: aquamarine;
+    color: black;
+}

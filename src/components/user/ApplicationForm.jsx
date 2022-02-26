@@ -36,6 +36,10 @@ export default function ApplicationForm() {
     setAgree(!agree);
   };
 
+  const ctx = useContext(UserContext);
+
+  console.log("ctx="+ctx[0])
+
   // console.log(window.localStorage.getItem("userData"))
   const responseData = window.localStorage.getItem("userData");
   console.log(responseData);
@@ -65,8 +69,8 @@ export default function ApplicationForm() {
       data: JSON.stringify(data),
       success: window.alert("Added Successfully"),
     });
-    window.location.href = "http://localhost:3000/home";
-  };
+  }
+   
 
   const ColorButton = styled(Button)(({ theme }) => ({
     color: theme.palette.getContrastText("#011638"),

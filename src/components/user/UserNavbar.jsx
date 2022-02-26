@@ -1,5 +1,6 @@
 import React from "react";
 import { Nav, NavLink, Bars, NavMenu, NavBtn} from "./NavElements";
+import Button from "@mui/material/Button";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 const Navbar = () => {
   return (
@@ -16,12 +17,9 @@ const Navbar = () => {
           <NavLink to='/applyloan' activeStyle>
             APPLY FOR LOAN
           </NavLink>
-          <NavLink to='/contact' activeStyle>
-            STATUS
-          </NavLink>
         </NavMenu>
         <NavBtn>
-          <NavLink to='/profile'><AccountCircleIcon sx={{ fontSize: 40 }}/></NavLink>
+          <a href='/applyloan' style={{"textDecoration":"none"}}><Button variant="contained">LogOut</Button></a>
         </NavBtn>
       </Nav>
     </>
