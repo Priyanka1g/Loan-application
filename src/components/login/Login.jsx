@@ -86,7 +86,7 @@ export default function Home() {
 
                 var x = axios({
                   method: "POST",
-                  url: "http://localhost:8081/loginCheck",
+                  url: "http://localhost:8080/loginCheck",
                   headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json",
@@ -101,7 +101,7 @@ export default function Home() {
                   window.localStorage.setItem("userData", res.data);
 
                   if (res.data[0] === 1 && res.data[2] === 1) {
-                    window.location.href = "http://localhost:3000/admin/info";
+                    window.location.href = "http://localhost:3000/admin/home";
                   } else if (res.data[0] === 1 && res.data[2] === 0) {
                     window.location.href = "http://localhost:3000/applyloan";
                   } else {

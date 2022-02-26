@@ -48,76 +48,19 @@ const columns = [
   },
 ];
 
-function createData(serialNo, name, email, cibilScore, loanType) {
-  return { serialNo, name, email, cibilScore, loanType };
-}
 
-export default function UsersList({ listName }) {
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [loanApplications,setLoanApplications]=useState([]);
-  const loanCtx = useContext(LoanContext);
-
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
-
-  useEffect(() => {
-    // let rows = [{
-    //   serialNo:2,
-    //   name: "Tarcvbnmun",
-    //   email:"ghj@fgh.com",
-    //   cibilScore:34,
-    //   loanType:"Car Loan"
-    // }];
-    let rows= [createData(2,"Tarun","tarun@gmail.com",56,"Education Loan")];
-    axios({
-      method: "GET",
-      url: "http://localhost:8080/getallUserDetails",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-    }).then((res) => {
-      console.log(res.data);
-      res.data.map((loan,index)=>{
-          axios({
-            method: "GET",
-            url: "http://localhost:8080/getuser/"+loan.customer_id,
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-              "Access-Control-Allow-Origin": "*",
-            },
-          }).then((result)=>{
-            console.log(result);
-            rows.unshift({
-              serialNo: index + 1,
-              name: result.data.user_name,
-              email: result.data.email,
-              cibilScore: loan.cibil_score,
-              loanType: loan.loan_purpose
-            })
-          })
-      })
-    });
-    setLoanApplications(rows);
-  },[]);
-
-  console.log("loanApplications",loanApplications);
+export default function UsersList({ listName,loanApplications }) {
+ 
   return (
     <div className={classes.tableContainer}>
       <div
         className={classes.table}
         style={{ width: listName === "requests" ? "80%" : "70%" }}
       >
+        <div style={{color:"red"}}> {loanApplications.map((loan)=>{
+            return <div>{loan.loanType}</div>
+        })}
+        </div> 
         <Paper
           sx={{
             overflow: "hidden",
@@ -131,20 +74,8 @@ export default function UsersList({ listName }) {
               aria-label="sticky table"
               sx={{ fontFamily: "Lato" }}
             >
-              <TableHead sx={{ fontSize: 2, fontFamily: "Lato" }}>
+              {/* <TableHead sx={{ fontSize: 2, fontFamily: "Lato" }}>
                 <TableRow>
-                  {/* <TableCell
-                    sx={{
-                      backgroundColor: "var(--blue)",
-                      fontFamily: "Lato",
-                      color: "whitesmoke",
-                      fontSize: "20px",
-                    }}
-                    key="serialNo"
-                    style={{ minWidth: 30 }}
-                  >
-                    S.No.
-                  </TableCell> */}
                   {columns.map((column) => (
                     <TableCell
                       sx={{
@@ -175,11 +106,10 @@ export default function UsersList({ listName }) {
                       View Details
                     </TableCell>
                   )}
-                </TableRow>
-              </TableHead>
+                </TableRow> */}
+              {/* </TableHead> */}
               <TableBody>
                 {loanApplications
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row, index) => {
                     return (
                       <TableRow
@@ -221,7 +151,8 @@ export default function UsersList({ listName }) {
               </TableBody>
             </Table>
           </TableContainer>
-          <TablePagination
+          {console.log("loan",loanApplications)};
+          {/* <TablePagination
             sx={{
               backgroundColor: "var(--blue)",
               color: "whitesmoke",
@@ -234,7 +165,7 @@ export default function UsersList({ listName }) {
             page={page}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
-          />
+          /> */}
         </Paper>
       </div>
     </div>

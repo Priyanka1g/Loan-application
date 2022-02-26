@@ -1,7 +1,7 @@
 import classes from "./InfoGraphic.module.css";
 
 function InfoGraphic() {
-  return <div>InfoGraphic</div>;
+  return <div>Home</div>;
 }
 
 export default InfoGraphic;

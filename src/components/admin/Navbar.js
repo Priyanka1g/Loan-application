@@ -14,8 +14,8 @@ const Navbar = () => {
         </NavLink>
         <Bars />
         <NavMenu>
-          <NavLink to="/admin/info" activeStyle>
-            Infographics
+          <NavLink to="/admin/home" activeStyle>
+            Home
           </NavLink>
           <NavLink to="/admin/requests" activeStyle>
             Pending applications
