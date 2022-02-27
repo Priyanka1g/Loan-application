@@ -50,7 +50,7 @@ export default function Userinfo(props) {
   },[]);
 
   useEffect(()=>{
-    customer.approve=isApproved
+    customer.approved=isApproved
     console.log("customer",customer)
     axios({
       method: "post",
@@ -65,19 +65,7 @@ export default function Userinfo(props) {
     }).then((res)=>{
         console.log("res",res);
     })
-    // axios({
-    //   method: "PUT",
-    //   url: "http://localhost:8080/approve",
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json",
-    //     "Access-Control-Allow-Origin": "*",
-    //   },
-    //   data: JSON.stringify({
-    //     id:props.id,
-    //     approve:isApproved
-    //   }),
-    // })
+    
   },[isApproved])
 
   return (
@@ -148,10 +136,14 @@ export default function Userinfo(props) {
           
         </div>
         <div className={classes.button}>
-          <button className={classes.btns}>
+          <button className={classes.btns} onClick={()=>{
+                  setApporved(1);
+                }}>
             Approve
           </button>
-          <button type="button" className={classes.btns} style={{"backgroundColor":"red"}}>
+          <button type="button" className={classes.btns} style={{"backgroundColor":"red"}}onClick={()=>{
+                  setApporved(-1);
+                }}>
             Reject
           </button>
           </div>
@@ -159,7 +151,8 @@ export default function Userinfo(props) {
           <button className={classes.mainbtn1}
           onClick={() => {
             props.clicked(true);
-            
+            // props.refresh();
+            window.location.href="http://localhost:3000/admin/requests"
           }}
         >
           
@@ -168,48 +161,7 @@ export default function Userinfo(props) {
         </button>
 
    
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Full Name</TableCell>
-                <TableCell>Email</TableCell>
-                <TableCell>User Income</TableCell>
-                <TableCell>Loan Amount</TableCell>
-                <TableCell>Loan Purpose</TableCell>
-                <TableCell>Duration in Years</TableCell>
-                <TableCell>Mortage</TableCell>
-                <TableCell>User Assests</TableCell>
-                <TableCell>Cibil Score</TableCell>
-                <TableCell>isApproved</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-                <TableRow>
-                  <TableCell>{user.user_name}</TableCell>
-                  <TableCell>{user.email}</TableCell>
-                  <TableCell>{customer.user_income}</TableCell>
-                  <TableCell>{customer.loan_amount}</TableCell>
-                  <TableCell>{customer.loan_purpose}</TableCell>
-                  <TableCell>{customer.duration}</TableCell>
-                  <TableCell>{customer.mortage}</TableCell>
-                  <TableCell>{customer.user_assets}</TableCell>
-                  <TableCell>{customer.cibil_score}</TableCell>
-                  <TableCell>{customer.approved}</TableCell>
-                </TableRow>
-            </TableBody>
-          </Table>
-        </TableContainer>
-                <button onClick={()=>{
-                  setApporved(1);
-                }}>
-            Accept
-          </button>
-          <button onClick={()=>{
-            setApporved(-1);
-          }}>
-            Reject
-          </button>
+       
         </div>
       </div>
   );

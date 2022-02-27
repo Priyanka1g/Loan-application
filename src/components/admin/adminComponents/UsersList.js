@@ -51,7 +51,7 @@ const columns = [
   },
 ];
 
-export default function UsersList({ listName,applications,clicked,click}) {
+export default function UsersList({ listName,applications,clicked,click,refresh}) {
 
   const [id,setId]=useState(0);
   const [loanApplications,setLoanApplications]=useState([]);
@@ -175,6 +175,6 @@ export default function UsersList({ listName,applications,clicked,click}) {
         
       </Paper>
     </div>
-  </div>: <Userinfo id={id} clicked={clicked}></Userinfo>
+  </div>: <Userinfo id={id} refresh= {refresh} clicked={clicked}></Userinfo>
   );
 }

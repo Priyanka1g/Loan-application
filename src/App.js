@@ -65,6 +65,7 @@ function App() {
                   )
                 }
               />
+              {/* <Route exact path="/login" element={<Login />} /> */}
               <Route exact path="/home" element={<UserHomePage />} />
             </Routes>
           </BrowserRouter>

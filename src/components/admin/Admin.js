@@ -9,7 +9,7 @@ import axios from "axios";
 function Admin() {
   const [applications,setApplications]=useState([]);
   // const loanCtx = useContext(LoanContext);
-  const [demo,setDemo]=useState();
+  const [demo,setDemo]=useState(0);
 
   useEffect(() => {
     let rows = [];
@@ -45,15 +45,22 @@ function Admin() {
           })
           if(index===res.data.length-1){
               setApplications(rows);
-              setDemo(1);
+              // setDemo(1);
               console.log("rows",rows);
           }
       })
     // setapplications(rows);
     });
     console.log("applications",applications);
-  },[]);
-
+  },[demo]);
+function refresh(){
+  setDemo(demo+1);
+}
+// function refresh2(num){
+//   setTimeout(() => {
+    
+//   }, 3000);
+// }
   
   const [clicked,setClicked]=useState(true);
   const [item, setItem] = useState(0);
@@ -63,8 +70,8 @@ function Admin() {
       <Navbar />
       <Routes>
         <Route path="home" element={<InfoGraphic />} />
-        <Route path="requests" element={<UsersList key="1" listName="requests" clicked={setClicked} click={clicked} applications={applications}/>} />
-        <Route path="borrowers" element={<UsersList key="2" listName="borrowers" clicked={setClicked} click={clicked} applications={applications}/>} />
+        <Route path="requests" element={<UsersList refresh= {refresh} key="1" listName="requests" clicked={setClicked} click={clicked} applications={applications}/>} />
+        <Route path="borrowers" element={<UsersList refresh= {refresh} key="2" listName="borrowers" clicked={setClicked} click={clicked} applications={applications}/>} />
       </Routes>
     </>
   );
