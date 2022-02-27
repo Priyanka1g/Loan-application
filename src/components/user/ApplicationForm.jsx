@@ -38,9 +38,8 @@ export default function ApplicationForm() {
 
   const ctx = useContext(UserContext);
 
-  console.log("ctx="+ctx[0])
+  console.log(ctx.userData)
 
-  // console.log(window.localStorage.getItem("userData"))
   const responseData = window.localStorage.getItem("userData");
   console.log(responseData);
 

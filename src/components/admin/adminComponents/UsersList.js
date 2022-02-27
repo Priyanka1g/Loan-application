@@ -58,10 +58,6 @@ export default function UsersList({ listName,loanApplications }) {
         className={classes.table}
         style={{ width: listName === "requests" ? "80%" : "70%" }}
       >
-        <div style={{color:"red"}}> {loanApplications.map((loan)=>{
-            return <div>{loan.loanType}</div>
-        })}
-        </div> 
         <Paper
           sx={{
             overflow: "hidden",
@@ -75,7 +71,7 @@ export default function UsersList({ listName,loanApplications }) {
               aria-label="sticky table"
               sx={{ fontFamily: "Lato" }}
             >
-              {/* <TableHead sx={{ fontSize: 2, fontFamily: "Lato" }}>
+              <TableHead sx={{ fontSize: 2, fontFamily: "Lato" }}>
                 <TableRow>
                   {columns.map((column) => (
                     <TableCell
@@ -107,8 +103,8 @@ export default function UsersList({ listName,loanApplications }) {
                       View Details
                     </TableCell>
                   )}
-                </TableRow> */}
-              {/* </TableHead> */}
+                </TableRow> 
+               </TableHead>
               <TableBody>
                 {loanApplications
                   .map((row, index) => {
@@ -119,7 +115,6 @@ export default function UsersList({ listName,loanApplications }) {
                         tabIndex={-1}
                         key={row.serialNo}
                       >
-                        {/* <TableCell key={index}>{index + 1}</TableCell> */}
                         {columns.map((column) => {
                           const value = row[column.id];
                           return (
@@ -153,20 +148,7 @@ export default function UsersList({ listName,loanApplications }) {
             </Table>
           </TableContainer>
           {console.log("loan",loanApplications)};
-          {/* <TablePagination
-            sx={{
-              backgroundColor: "var(--blue)",
-              color: "whitesmoke",
-              fontFamily: "Lato",
-            }}
-            rowsPerPageOptions={[10, 25, 100]}
-            component="div"
-            count={loanApplications.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          /> */}
+          
         </Paper>
       </div>
     </div>

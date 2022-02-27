@@ -115,14 +115,13 @@ export default function Login(props) {
                   data: JSON.stringify(data),
                 }).then(function (res) {
                   console.log(res.data);
-                  ctx.setUserData(res.data[0]);
+                  ctx.addUserData(res.data[0]);
                   console.log(ctx.userData);
 
                   window.localStorage.setItem("userData", res.data);
 
                   if (res.data[0] === 1 && res.data[2] === 1) {
                     props.adminlogin();
-                    // window.location.href = "http://localhost:3000/admin/home";
                   } else if (res.data[0] === 1 && res.data[2] === 0) {
                     props.userlogin();
                   } else {
