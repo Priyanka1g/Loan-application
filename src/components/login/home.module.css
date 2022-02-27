@@ -183,4 +183,7 @@
   .moreinfo img {
     width: auto;
   }
+  .links{
+      width: 40%;
+  }
 }

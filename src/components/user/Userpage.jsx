@@ -69,9 +69,10 @@ const rows = [
 
 export default function Userpage() {
   return (
-    <div>
+<>
+<div>
       <Navbar></Navbar>
-      <div style={{ padding: "70px" }}>
+      <div style={{ padding: "70px" ,margin:"auto"}}>
         <Card sx={{ minWidth: 275 }}>
           <div style={{ padding: "70px" }}>
             <Box sx={{ width: 1 }}>
@@ -126,27 +127,15 @@ export default function Userpage() {
                   </Item>
                 </Box>
 
-                <Box gridColumn="span 4">
-                  <div
-                    style={{
-                      padding: "0px 20px ",
-
-                      display: "table",
-                      margin: " 0 auto",
-                    }}
-                  >
-                    <Stack spacing={2} direction="row">
-                      <ColorButton variant="contained">
-                        Apply for new Lone
-                      </ColorButton>
-                    </Stack>
-                  </div>
-                </Box>
+        
               </Box>
             </Box>
           </div>
         </Card>
       </div>
-    </div>
+      
+  </div>
+    
+</>
   );
 }
