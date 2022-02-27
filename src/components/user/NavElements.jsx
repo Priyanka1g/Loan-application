@@ -5,7 +5,8 @@ import styled from 'styled-components';
 export const Nav = styled.nav`
   background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");
   background-color: white;
-  border-radius: 10px 10px 10px 10px;
+  // border-radius: 10px 10px 10px 10px;
+  width:100%;
   height: 57px;
   display: flex;
   padding: 0.5rem 0.5rem;

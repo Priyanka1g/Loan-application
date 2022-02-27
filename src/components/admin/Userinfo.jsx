@@ -8,6 +8,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import classes from "./userinfo.module.css";
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 // import bootstrap from "bootstrap";
 
 const axios = require("axios");
@@ -61,7 +62,7 @@ export default function Userinfo(props) {
   },[isApproved])
 
   return (
-    <div>
+    <div className={classes.main}>
       <div className={classes.body}>
         <h1
           style={{
@@ -73,14 +74,78 @@ export default function Userinfo(props) {
         >
           User Info
         </h1>
-        <h1>{props.id}</h1>
-        <button
+        
+        
+        <div className={classes.customerdata}>
+        <table className={classes.ct}>
+          <tr>
+            <td>Full Name</td>
+            <td>{user.user_name}</td>
+          </tr>
+          <hr />
+          <tr>
+            <td>Email</td>
+            <td>{user.email}</td>
+          </tr>
+          <hr />
+          <tr>
+            <td>User Income</td>
+            <td>{customer.user_income}</td>
+          </tr>
+          <hr />
+          <tr>
+            <td>Loan Amount</td>
+            <td>{customer.loan_amount}</td>
+          </tr>
+          <hr />
+          <tr>
+            <td>Loan Purpose</td>
+            <td>{customer.loan_purpose}</td>
+          </tr>
+          <hr />
+          <tr>
+            <td>Duration in Years</td>
+            <td>{customer.duration}</td>
+          </tr>
+          <hr />
+          <tr>
+            <td>Mortage</td>
+            <td>{customer.mortage}</td>
+          </tr>
+          <hr />
+          <tr>
+            <td>Cibil Score</td>
+            <td>{customer.cibil_score}</td>
+          </tr>
+          <hr />
+          <tr>
+            <td>User Assests</td>
+            <td>{customer.user_assets}</td>
+          </tr>
+        </table>
+        </div>
+
+   
+          
+        </div>
+        <div className={classes.button}>
+          <button className={classes.btns}>
+            Approve
+          </button>
+          <button type="button" className={classes.btns} style={{"backgroundColor":"red"}}>
+            Reject
+          </button>
+          </div>
+          <div className={classes.mainbtn}>
+          <button className={classes.mainbtn1}
           onClick={() => {
             props.clicked(true);
             
           }}
         >
-          X
+          
+          Go Back To All Requested Loans Page <ExitToAppIcon  style={{"transform":"rotate(180deg)"}} />
+          
         </button>
 
    

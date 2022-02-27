@@ -3,6 +3,8 @@ import React from "react";
 import { Nav, NavLink, Bars, NavMenu } from "./NavbarElements.js";
 import { styled } from "@mui/material/styles";
 import classes from "./Navbar.module.css";
+import CreditScoreRoundedIcon from "@mui/icons-material/CreditScoreRounded";
+
 
 const Navbar = () => {
   return (
@@ -10,7 +12,12 @@ const Navbar = () => {
       <Nav>
         <NavLink to="/" activeStyle>
           {/* here you can add logo */}
-          <h2>QuickLoan</h2>
+          <div className={classes.icon}>
+            <CreditScoreRoundedIcon
+              style={{ color: "black", "font-size": "35px" }}
+            />
+            <p>QuickLoan</p>
+          </div>
         </NavLink>
         <Bars />
         <NavMenu>

@@ -135,11 +135,7 @@ export default function Userpage() {
                       margin: " 0 auto",
                     }}
                   >
-                    <Stack spacing={2} direction="row">
-                      <ColorButton variant="contained">
-                        Apply for new Lone
-                      </ColorButton>
-                    </Stack>
+                    
                   </div>
                 </Box>
               </Box>
