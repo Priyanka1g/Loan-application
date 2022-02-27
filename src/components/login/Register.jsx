@@ -107,7 +107,7 @@ export default function Home() {
                   user_name: formData.user_name,
                   user_password: formData.user_password,
                   email: formData.email,
-                  isAdmin: 0,
+                  isAdmin: 1,
                 };
                 console.log(JSON.stringify(data));
                 axios({

@@ -12,16 +12,10 @@ function Admin() {
   const [demo,setDemo]=useState();
 
   useEffect(() => {
-    let rows = [{
-      serialNo:2,
-      name: "Tarcvbnmun",
-      email:"ghj@fgh.com",
-      cibilScore:34,
-      loanType:"Car Loan"
-    }];
+    let rows = [];
     axios({
       method: "GET",
-      url: "http://localhost:8080/getallUserDetails",
+      url: "http://localhost:8080/loanapplications",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -40,6 +34,7 @@ function Admin() {
           }).then((result)=>{
             rows.push({ 
               serialNo: index + 1,
+              id:result.data.user_id,
               name: result.data.user_name,
               email: result.data.email,
               cibilScore: loan.cibil_score,
@@ -57,13 +52,17 @@ function Admin() {
     console.log("loanApplications",loanApplications);
   },[]);
 
+  
+  const [clicked,setClicked]=useState(true);
+  const [item, setItem] = useState(0);
+
   return (
     <>
       <Navbar />
       <Routes>
-        <Route path="info" element={<InfoGraphic />} />
-        <Route path="requests" element={<UsersList listName="requests" loanApplications={loanApplications}/>} />
-        <Route path="borrowers" element={<UsersList listName="borrowers" loanApplications={loanApplications}/>} />
+        <Route path="home" element={<InfoGraphic />} />
+        <Route path="requests" element={<UsersList listName="requests" clicked={setClicked} click={clicked} loanApplications={loanApplications}/>} />
+        <Route path="borrowers" element={<UsersList listName="borrowers" clicked={setClicked} click={clicked} loanApplications={loanApplications}/>} />
       </Routes>
     </>
   );

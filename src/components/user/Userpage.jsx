@@ -1,5 +1,4 @@
-import React from 'react'
-import Navbar from './UserNavbar'
+import React from "react";
 
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -22,6 +21,7 @@ import Stack from "@mui/material/Stack";
 import { purple } from "@mui/material/colors";
 
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
+import Navbar from "./UserNavbar";
 
 const darkTheme = createTheme({ palette: { mode: "dark" } });
 const lightTheme = createTheme({ palette: { mode: "light" } });

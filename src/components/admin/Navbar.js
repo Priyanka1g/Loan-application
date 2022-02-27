@@ -23,7 +23,7 @@ const Navbar = () => {
           <NavLink to="/admin/borrowers">Borrowers</NavLink>
           <NavLink to="/admin/requests" activeStyle>
             <Button sx={{}} variant="outlined" onClick={()=>{
-              window.location.href="http://localhost:3000/admin/requests"
+              window.location.href="http://localhost:3000/admin/home"
             }}>
               Logout
             </Button>
