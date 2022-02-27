@@ -83,7 +83,7 @@ export default function ApplicationForm() {
       data: JSON.stringify(data),
       success: window.alert("Applied Successfully"),
     });
-    window.location.href = "http://localhost:3000/home";
+    window.location.href = "http://localhost:3000/";
     }
   }, [formErrors]);
 
