@@ -54,29 +54,23 @@ const columns = [
 export default function UsersList({ listName,applications,clicked,click}) {
 
   const [id,setId]=useState(0);
-  const [loanApplications,setLoanApplications]=useState(applications);
-  console.log("rdtfyguhij",applications);
+  const [loanApplications,setLoanApplications]=useState([]);
 
   useEffect(()=>{
     let list=[];
      applications.map((item)=>{
-      console.log("inside map");
       if(listName=="requests"){
-        console.log("inside request");
-        if(item.approved==0 && item.rejected==0){
-          console.log("item1",item);
+        if(item.approved==0){
           list.push(item);
         }
       } 
       else if(listName=="borrowers"){
-        if(item.approved==1 && item.rejected==0){
-          console.log("item2",item)
+        if(item.approved==1){
           list.push(item);
         }
       }
     })
         setLoanApplications(list);
-        console.log("list",list);
   },[])
   return (
     click||listName=="borrowers"?<div className={classes.tableContainer}>

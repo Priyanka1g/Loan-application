@@ -63,8 +63,8 @@ function Admin() {
       <Navbar />
       <Routes>
         <Route path="home" element={<InfoGraphic />} />
-        <Route path="requests" element={<UsersList listName="requests" clicked={setClicked} click={clicked} applications={applications}/>} />
-        <Route path="borrowers" element={<UsersList listName="borrowers" clicked={setClicked} click={clicked} applications={applications}/>} />
+        <Route path="requests" element={<UsersList key="1" listName="requests" clicked={setClicked} click={clicked} applications={applications}/>} />
+        <Route path="borrowers" element={<UsersList key="2" listName="borrowers" clicked={setClicked} click={clicked} applications={applications}/>} />
       </Routes>
     </>
   );
