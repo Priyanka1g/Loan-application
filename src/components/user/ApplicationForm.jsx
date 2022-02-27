@@ -67,8 +67,9 @@ export default function ApplicationForm() {
         loan_amount: parseInt(applicationData.loan_amount),
         mortage:applicationData.mortage,
         duration: parseFloat(applicationData.duration),
-        isAdmin:ctx.userData[2]
-
+        admin:ctx.userData[2],
+        approved:0,
+        rejected:0
     }
     console.log(JSON.stringify(data));
     axios({

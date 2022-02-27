@@ -38,7 +38,9 @@ function Admin() {
               name: result.data.user_name,
               email: result.data.email,
               cibilScore: loan.cibil_score,
-              loanType: loan.loan_purpose
+              loanType: loan.loan_purpose,
+              ...loan,
+              ...result.data
             })
           })
           if(index===res.data.length-1){
