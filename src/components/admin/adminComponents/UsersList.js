@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import LoanContext from "../../../store/LoanContext.js";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -9,6 +10,7 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Button from "@mui/material/Button";
 import classes from "./UsersList.module.css";
+const axios = require("axios");
 
 const columns = [
   {
@@ -51,54 +53,12 @@ const rows = [
   createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
   createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
   createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
-  createData("Utkarsh", "utkarsh@gmail.com", 100000, "Home Loan"),
-  createData("Tarun", "tarun@gmail.com", 200000, "Home Loan"),
 ];
 
 export default function UsersList({ listName }) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const loanCtx = useContext(LoanContext);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -108,7 +68,16 @@ export default function UsersList({ listName }) {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-  
+
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: "http://localhost:8080/getAllUserDetails",
+    }).then((res) => {
+      console.log(res);
+    });
+  });
+
   return (
     <div className={classes.tableContainer}>
       <div

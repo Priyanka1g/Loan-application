@@ -5,15 +5,15 @@ import { createContext } from "react";
 
 const UserContext = createContext({
   userData: [],
-    setUserData: ()=>{},
+  setUserData: ()=>{},
 });
 
 export function UserContextProvider(props) {
   const [userData,setUserData] = useState([]);
 
   const context = {
-    userData: userData,
-    setUserData: setUserData,
+    userData,
+    setUserData
   };
 
   return (

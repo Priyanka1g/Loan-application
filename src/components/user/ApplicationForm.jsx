@@ -2,62 +2,61 @@ import React, { useContext } from "react";
 import classes from "./applicationForm.module.css";
 import Navbar from "./UserNavbar";
 import { useState } from "react";
-import UserContext from "../../store/userContext";
+import UserContext from "../../store/UserContext";
 import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 // import "../../css/applicationForm.css"
 import MonetizationOnRoundedIcon from "@mui/icons-material/MonetizationOnRounded";
 import EventNoteRoundedIcon from "@mui/icons-material/EventNoteRounded";
-import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 const axios = require("axios");
-
-
 
 export default function ApplicationForm() {
   const [applicationData, setApplicationData] = useState({
-    id:"",
+    id: "",
     income: "",
     cibil: "",
     assets: "",
     purpose: "",
     loan_amount: "",
-    mortage:"",
-    duration:""
+    mortage: "",
+    duration: "",
   });
 
-
-
   const [agree, setAgree] = useState(false);
-  
+
   const handleChange = (e) => {
     setApplicationData({
       ...applicationData,
       [e.target.name]: e.target.value,
     });
   };
-  const handleCheck=e=>{
-    setAgree(!agree)
-  }
+  const handleCheck = (e) => {
+    setAgree(!agree);
+  };
+
+  const ctx = useContext(UserContext);
+
+  console.log("ctx="+ctx[0])
 
   // console.log(window.localStorage.getItem("userData"))
- const responseData = window.localStorage.getItem("userData")
- console.log(responseData)
+  const responseData = window.localStorage.getItem("userData");
+  console.log(responseData);
 
-  const handleSubmit=(event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    var data={
-      
-        customer_id:responseData[2],
-        user_income:applicationData.income,
-        cibil_score: applicationData.cibil,
-        user_assets: applicationData.assets,
-        loan_purpose: applicationData.purpose,
-        loan_amount: applicationData.loan_amount,
-        mortage:applicationData.mortage,
-        duration: applicationData.duration, 
-        isAdmin:responseData[5]
-    }
+    var data = {
+      customer_id: responseData[2],
+      user_income: applicationData.income,
+      cibil_score: applicationData.cibil,
+      user_assets: applicationData.assets,
+      loan_purpose: applicationData.purpose,
+      loan_amount: applicationData.loan_amount,
+      mortage: applicationData.mortage,
+      duration: applicationData.duration,
+      isAdmin: responseData[5],
+    };
     console.log(JSON.stringify(data));
     axios({
       method: "POST",
@@ -70,7 +69,6 @@ export default function ApplicationForm() {
       data: JSON.stringify(data),
       success: window.alert("Added Successfully"),
     });
-    window.location.href = "http://localhost:3000/home";
   }
    
 
@@ -83,11 +81,8 @@ export default function ApplicationForm() {
     },
   }));
   return (
-    
     <>
-    
-    
-        <Navbar></Navbar>
+      <Navbar></Navbar>
       <div className={classes.content}>
         <div className={classes.explanation}>
           <div className={classes.c1}>
@@ -97,15 +92,21 @@ export default function ApplicationForm() {
               />
             </div>
             <div className={classes.cont}>
-              <p style={{ fontWeight: "bold" }}>Rate of Interest Starting at 10.12% per annum</p>
+              <p style={{ fontWeight: "bold" }}>
+                Rate of Interest Starting at 10.12% per annum
+              </p>
             </div>
           </div>
           <div className={classes.c1}>
             <div className={classes.icon}>
-              <AccountBalanceWalletIcon style={{ height: "50px", width: "80px" }} />
+              <AccountBalanceWalletIcon
+                style={{ height: "50px", width: "80px" }}
+              />
             </div>
             <div className={classes.cont}>
-              <p style={{ fontWeight: "bold" }}>Loan amount starting from 15,000 INR to 15,00,000 INR</p>
+              <p style={{ fontWeight: "bold" }}>
+                Loan amount starting from 15,000 INR to 15,00,000 INR
+              </p>
             </div>
           </div>
           <div className={classes.c1}>
@@ -113,18 +114,16 @@ export default function ApplicationForm() {
               <EventNoteRoundedIcon style={{ height: "50px", width: "80px" }} />
             </div>
             <div className={classes.cont}>
-              <p style={{ fontWeight: "bold" }}>Tenure Ranging From 12 months to 60 months</p>
+              <p style={{ fontWeight: "bold" }}>
+                Tenure Ranging From 12 months to 60 months
+              </p>
             </div>
           </div>
         </div>
-        <div className={classes.loginForm} >
-          <h2 style={{ textAlign: "center" }}>
-            APPLICATION FORM
-          </h2>
-          <div className={classes.form} style={{padding:"10px 40px"}}>
-            <form className={classes.login}
-                onSubmit={handleSubmit}
-            >
+        <div className={classes.loginForm}>
+          <h2 style={{ textAlign: "center" }}>APPLICATION FORM</h2>
+          <div className={classes.form} style={{ padding: "10px 40px" }}>
+            <form className={classes.login} onSubmit={handleSubmit}>
               <TextField
                 required
                 id="standard-required"
@@ -161,7 +160,7 @@ export default function ApplicationForm() {
                 value={applicationData.type}
                 onChange={handleChange}
               />
-            <TextField
+              <TextField
                 required
                 id="standard-requried"
                 name="loan_amount"
@@ -187,9 +186,13 @@ export default function ApplicationForm() {
                 value={applicationData.duration}
                 onChange={handleChange}
               />
-              <div style={{color: "#6b5c5b", marginTop:"10px"}}>
-                  <input type="checkbox" onClick={handleCheck} />I have read and accept <a href="#">Term and Conditions</a></div>
-              <ColorButton disabled={!agree} variant="contained" type="submit" >SUBMIT</ColorButton>
+              <div style={{ color: "#6b5c5b", marginTop: "10px" }}>
+                <input type="checkbox" onClick={handleCheck} />I have read and
+                accept <a href="#">Term and Conditions</a>
+              </div>
+              <ColorButton disabled={!agree} variant="contained" type="submit">
+                SUBMIT
+              </ColorButton>
             </form>
           </div>
         </div>

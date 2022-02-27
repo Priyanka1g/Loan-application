@@ -7,11 +7,11 @@ import EventNoteRoundedIcon from "@mui/icons-material/EventNoteRounded";
 import CasesRoundedIcon from "@mui/icons-material/CasesRounded";
 import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
-import UserContext from "../../store/userContext";
+import UserContext from "../../store/UserContext";
 import Button from "@mui/material/Button";
 const axios = require("axios");
 
-export default function Home() {
+export default function Login(props) {
   const [formData, setFormData] = useState({
     user_name: "",
     user_password: "",
@@ -38,7 +38,25 @@ export default function Home() {
   return (
     <>
       <div className={classes.header}>
-        <p>Digital</p> <p>|</p> <p>Instant</p> <p>|</p> <p>Simple</p>
+        <p>
+          {" "}
+          <a
+            href="/"
+            style={{ float: "left", color: "white", textDecoration: "none" }}
+          >
+            Home
+          </a>
+        </p>{" "}
+        <p>|</p>{" "}
+        <p>
+          {" "}
+          <a
+            href="/register"
+            style={{ float: "left", color: "white", textDecoration: "none" }}
+          >
+            Register
+          </a>
+        </p>
       </div>
       <div className={classes.content}>
         <div className={classes.explanation}>
@@ -84,9 +102,11 @@ export default function Home() {
                   user_password: formData.user_password,
                 };
 
+                console.log("local == " + localStorage.getItem("userData"));
+
                 var x = axios({
                   method: "POST",
-                  url: "http://localhost:8081/loginCheck",
+                  url: "http://localhost:8080/loginCheck",
                   headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json",
@@ -95,17 +115,17 @@ export default function Home() {
                   data: JSON.stringify(data),
                 }).then(function (res) {
                   console.log(res.data);
-                  // ctx.setUserData(res.data);
-                  // console.log(ctx.userData)
+                  ctx.setUserData(res.data[0]);
+                  console.log(ctx.userData);
 
-                  window.localStorage.setItem("userData",res.data)
-                  
+                  window.localStorage.setItem("userData", res.data);
+
                   if (res.data[0] === 1 && res.data[2] === 1) {
-                    window.location.href = "http://localhost:3000/admin/info";
+                    props.adminlogin();
                   } else if (res.data[0] === 1 && res.data[2] === 0) {
-                    window.location.href = "http://localhost:3000/applyloan";
+                    props.userlogin();
                   } else {
-                    window.alert("Np Account Exists");
+                    window.alert("No Account Exists");
                     window.location.href = "http://localhost:3000/register";
                   }
                 });
