@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classes from "./style.module.css";
 import { useState } from "react";
 import UserContext from "../../store/UserContext";
@@ -19,6 +19,8 @@ export default function Home() {
     user_password: "",
     email: "",
   });
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmit, setIsSubmit] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -26,6 +28,47 @@ export default function Home() {
       [e.target.name]: e.target.value,
     });
     console.log(formData);
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setFormErrors(validate(formData));
+    setIsSubmit(true);
+  };
+  useEffect(()=>{
+    if (Object.keys(formErrors).length === 0 && isSubmit) {
+      var data = {
+        user_name: formData.user_name,
+        user_password: formData.user_password,
+        email: formData.email,
+        isAdmin: 0,
+      };
+      console.log(JSON.stringify(data));
+      axios({
+        method: "POST",
+        url: "http://localhost:8080/addUser",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        data: JSON.stringify(data),
+        success: window.alert("Registerd Successfully"),
+      });
+      window.location.href = "http://localhost:3000/applyloan";
+    }
+  },[formErrors])
+
+  const validate = (values) => {
+    const errors = {};
+    if (!values.user_password) {
+      errors.user_password = "Password is required!";
+    } else if (
+      !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/.test(values.user_password)
+    ) {
+      errors.user_password = "Password should contain atleast 1 number and 1 character of minimum length 6";
+    }
+
+    return errors;
   };
 
   const ColorButton = styled(Button)(({ theme }) => ({
@@ -162,7 +205,7 @@ export default function Home() {
                 value={formData.user_password}
                 onChange={handleChange}
               />
-
+              <p style={{ color: "red" }}>{formErrors.user_password}</p>
               <div className={classes.tc}>
                 <small>Let's Register for Loan</small>
               </div>
