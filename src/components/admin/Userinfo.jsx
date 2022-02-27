@@ -30,7 +30,7 @@ export default function Userinfo(props) {
     }).then((data)=>{
       console.log("--loan data--")
       setCustomer(data.data)
-      console.log(customer)
+      console.log(customer);
     })
 
     axios({
@@ -50,15 +50,34 @@ export default function Userinfo(props) {
   },[]);
 
   useEffect(()=>{
+    customer.approve=isApproved
+    console.log("customer",customer)
     axios({
-      method: "POST",
-      url: "http://localhost:8080/approved/"+isApproved,
+      method: "post",
+       url: "http://localhost:8080/addUserDetails" ,
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
       },
+      data: JSON.stringify(customer),
+      success: window.alert("Applied Successfully"),
+    }).then((res)=>{
+        console.log("res",res);
     })
+    // axios({
+    //   method: "PUT",
+    //   url: "http://localhost:8080/approve",
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json",
+    //     "Access-Control-Allow-Origin": "*",
+    //   },
+    //   data: JSON.stringify({
+    //     id:props.id,
+    //     approve:isApproved
+    //   }),
+    // })
   },[isApproved])
 
   return (
@@ -181,10 +200,14 @@ export default function Userinfo(props) {
             </TableBody>
           </Table>
         </TableContainer>
-                <button onClick={setApporved(1)}>
+                <button onClick={()=>{
+                  setApporved(1);
+                }}>
             Accept
           </button>
-          <button onClick={setApporved(-1)}>
+          <button onClick={()=>{
+            setApporved(-1);
+          }}>
             Reject
           </button>
         </div>
