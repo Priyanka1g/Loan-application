@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function Admin() {
-  const [loanApplications,setLoanApplications]=useState([]);
+  const [applications,setApplications]=useState([]);
   // const loanCtx = useContext(LoanContext);
   const [demo,setDemo]=useState();
 
@@ -38,18 +38,20 @@ function Admin() {
               name: result.data.user_name,
               email: result.data.email,
               cibilScore: loan.cibil_score,
-              loanType: loan.loan_purpose
+              loanType: loan.loan_purpose,
+              ...loan,
+              ...result.data
             })
           })
           if(index===res.data.length-1){
-              setLoanApplications(rows);
+              setApplications(rows);
               setDemo(1);
               console.log("rows",rows);
           }
       })
-    // setLoanApplications(rows);
+    // setapplications(rows);
     });
-    console.log("loanApplications",loanApplications);
+    console.log("applications",applications);
   },[]);
 
   
@@ -61,8 +63,8 @@ function Admin() {
       <Navbar />
       <Routes>
         <Route path="home" element={<InfoGraphic />} />
-        <Route path="requests" element={<UsersList listName="requests" clicked={setClicked} click={clicked} loanApplications={loanApplications}/>} />
-        <Route path="borrowers" element={<UsersList listName="borrowers" clicked={setClicked} click={clicked} loanApplications={loanApplications}/>} />
+        <Route path="requests" element={<UsersList listName="requests" clicked={setClicked} click={clicked} applications={applications}/>} />
+        <Route path="borrowers" element={<UsersList listName="borrowers" clicked={setClicked} click={clicked} applications={applications}/>} />
       </Routes>
     </>
   );

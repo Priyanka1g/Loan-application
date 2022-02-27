@@ -51,10 +51,33 @@ const columns = [
   },
 ];
 
-export default function UsersList({ listName,loanApplications,clicked,click}) {
+export default function UsersList({ listName,applications,clicked,click}) {
 
   const [id,setId]=useState(0);
+  const [loanApplications,setLoanApplications]=useState(applications);
+  console.log("rdtfyguhij",applications);
 
+  useEffect(()=>{
+    let list=[];
+     applications.map((item)=>{
+      console.log("inside map");
+      if(listName=="requests"){
+        console.log("inside request");
+        if(item.approved==0 && item.rejected==0){
+          console.log("item1",item);
+          list.push(item);
+        }
+      } 
+      else if(listName=="borrowers"){
+        if(item.approved==1 && item.rejected==0){
+          console.log("item2",item)
+          list.push(item);
+        }
+      }
+    })
+        setLoanApplications(list);
+        console.log("list",list);
+  },[])
   return (
     click||listName=="borrowers"?<div className={classes.tableContainer}>
     <div
@@ -109,7 +132,7 @@ export default function UsersList({ listName,loanApplications,clicked,click}) {
               </TableRow> 
              </TableHead>
             <TableBody>
-              {loanApplications
+              {loanApplications.length>0 && loanApplications
                 .map((row, index) => {
                   return (
                     <TableRow
