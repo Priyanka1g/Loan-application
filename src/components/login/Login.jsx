@@ -115,7 +115,7 @@ export default function Login(props) {
                   data: JSON.stringify(data),
                 }).then(function (res) {
                   console.log(res.data);
-                  ctx.setUserData(res.data[0]);
+                  ctx.addUserData(res.data);
                   console.log(ctx.userData);
 
                   window.localStorage.setItem("userData", res.data);

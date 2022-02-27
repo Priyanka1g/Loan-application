@@ -3,7 +3,6 @@ import classes from "./home.module.css";
 import Button from "@mui/material/Button";
 import React from "react";
 import Navbar from "../user/UserNavbar";
-import img from "./images/mainimg.jfif";
 import CreditScoreRoundedIcon from "@mui/icons-material/CreditScoreRounded";
 import CottageRoundedIcon from "@mui/icons-material/CottageRounded";
 import CarRentalRoundedIcon from "@mui/icons-material/CarRentalRounded";
@@ -34,7 +33,7 @@ export default function () {
           <div className={classes.links}>
             <div className={classes.big}>
               <a href="/applyloan">Login as User</a>
-              <a href="/admin/requests">Login as Admin</a>
+              <a href="/admin/home">Login as Admin</a>
             </div>
             <div className={classes.small}>
               <a href="/admin/requests">Login as Admin</a>
@@ -71,8 +70,7 @@ export default function () {
               </Button>
             </div>
           </div>
-          {/* <img src={img} alt="Image not found" srcset="" style={{"width":"100%","height":"95vh"}} /> */}
-        </div>
+         </div>
         <div className={classes.loanType}>
           <p
             style={{ "font-size": "1.8em", fontWeight: "bold", color: "black" }}
@@ -151,14 +149,6 @@ export default function () {
           <p> ©All contents here belong Maximus Group 3 </p>
         </div>
       </div>
-      {/* <div className={classes.con}>
-       <div className={classes.user}>
-       <Link className={classes.Link} to="/applyloan">User</Link>
-       </div>
-       <div className={classes.admin}>
-       <Link className={classes.Link} to="/admin/requests">Admin</Link>
-       </div>
-    </div> */}
     </>
   );
 }

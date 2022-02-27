@@ -1,5 +1,4 @@
-import React from 'react'
-import Navbar from './UserNavbar'
+import React from "react";
 
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -22,6 +21,7 @@ import Stack from "@mui/material/Stack";
 import { purple } from "@mui/material/colors";
 
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
+import Navbar from "./UserNavbar";
 
 const darkTheme = createTheme({ palette: { mode: "dark" } });
 const lightTheme = createTheme({ palette: { mode: "light" } });
@@ -69,9 +69,10 @@ const rows = [
 
 export default function Userpage() {
   return (
-    <div>
+<>
+<div>
       <Navbar></Navbar>
-      <div style={{ padding: "70px" }}>
+      <div style={{ padding: "70px" ,margin:"auto"}}>
         <Card sx={{ minWidth: 275 }}>
           <div style={{ padding: "70px" }}>
             <Box sx={{ width: 1 }}>
@@ -126,23 +127,15 @@ export default function Userpage() {
                   </Item>
                 </Box>
 
-                <Box gridColumn="span 4">
-                  <div
-                    style={{
-                      padding: "0px 20px ",
-
-                      display: "table",
-                      margin: " 0 auto",
-                    }}
-                  >
-                    
-                  </div>
-                </Box>
+        
               </Box>
             </Box>
           </div>
         </Card>
       </div>
-    </div>
+      
+  </div>
+    
+</>
   );
 }

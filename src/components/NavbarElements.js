@@ -3,26 +3,23 @@ import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Nav = styled.nav`
-  background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");
-  background-color: white;
-  ${'' /* border-radius: 10px; */}
-  height: 57px;
+  background: #ffffff;
+  height: 70px;
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem;
+  padding: 0.5rem calc((100vw - 1000px) / 2);
   z-index: 10;
 `;
 
 export const NavLink = styled(Link)`
-  color: #166ecb;
+  color: #5967d6;
   display: flex;
   align-items: center;
   text-decoration: none;
-  font-size: 17px;
-  font-weight: bold;
-  padding: 0 2rem;
+  padding: 0 4rem;
   height: 100%;
   cursor: pointer;
+
   &.active {
     color: #000000;
   }
