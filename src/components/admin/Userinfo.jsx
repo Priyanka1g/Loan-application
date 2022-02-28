@@ -87,7 +87,7 @@ export default function Userinfo(props) {
         <table className={classes.ct}>
           <tr>
             <td>Full Name</td>
-            <td>{user.user_name}</td>
+            <td>{user.full_name}</td>
           </tr>
           <hr />
           <tr>

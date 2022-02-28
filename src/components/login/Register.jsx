@@ -148,6 +148,7 @@ export default function Home() {
                 event.preventDefault();
                 var data = {
                   user_name: formData.user_name,
+                  full_name:formData.full_name,
                   user_password: formData.user_password,
                   email: formData.email,
                   isAdmin: 0,
