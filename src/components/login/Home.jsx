@@ -36,7 +36,7 @@ export default function () {
               <a href="/adminlogin">Login as Admin</a>
             </div>
             <div className={classes.small}>
-              <a href="/adminlogin">Login as Admin</a>
+              <a href="/applyloan">Login as Admin</a>
             </div>
           </div>
         </div>
@@ -52,11 +52,10 @@ export default function () {
                 </p>
               </div>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Eligendi eveniet accusantium exercitationem necessitatibus,
-                pariatur perferendis est, earum neque assumenda incidunt quae
-                impedit in consectetur quaerat nulla unde placeat laudantium
-                quas.
+                At QuickLoans, we believe your journey should continue without
+                any speed bumps. This is why we bring you customized Bank Loans
+                at competitive interest rates. To get started, check your loan
+                eligibility using our simple loan calculators. 
               </p>
               <Button
                 variant="contained"
@@ -70,7 +69,7 @@ export default function () {
               </Button>
             </div>
           </div>
-         </div>
+        </div>
         <div className={classes.loanType}>
           <p
             style={{ "font-size": "1.8em", fontWeight: "bold", color: "black" }}
@@ -138,10 +137,13 @@ export default function () {
               We Provide What You and Your Loved ones Need
             </p>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Similique ex voluptatibus sed numquam magnam ipsam pariatur
-              officiis fugiat, iusto consectetur libero corrupti aliquid
-              incidunt delectus. Adipisci officiis pariatur fugiat esse.
+            At QuickLoans, we believe your journey should continue without
+                any speed bumps. This is why we bring you customized Bank Loans
+                at competitive interest rates. To get started, check your loan
+                eligibility using our simple loan calculators. You can submit
+                your Bank Loan application online in three easy steps and avail
+                the most attractive interest rates and comfortable repayment
+                tenures.
             </p>
           </div>
         </div>

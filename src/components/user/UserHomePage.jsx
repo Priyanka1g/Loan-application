@@ -55,16 +55,9 @@ function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
 const rows = [
-  createData("8934759823", "Nikhil Lallar", "60,000", "approved"),
-  createData("8934759823", "Nikhil Lallar", "60,000", "approved"),
-  createData("8934759823", "Nikhil Lallar", "60,000", "approved"),
-  createData("8934759823", "Nikhil Lallar", "60,000", "approved"),
-  createData("8934759823", "Nikhil Lallar", "60,000", "approved"),
-  createData("8934759823", "Nikhil Lallar", "60,000", "approved"),
-  createData("8934759823", "Nikhil Lallar", "60,000", "approved"),
-  createData("8934759823", "Nikhil Lallar", "60,000", "approved"),
-  createData("8934759823", "Nikhil Lallar", "60,000", "approved"),
-  createData("8934759823", "Nikhil Lallar", "60,000", "approved"),
+  createData("19", "Home Loan", "60,000", "approved"),
+  createData("29", "Car Laan", "60,000", "approved"),
+  createData("39", "Land Mortagage", "60,000", "approved"),
 ];
 
 export default function Userpage() {
@@ -76,7 +69,7 @@ export default function Userpage() {
           <div style={{ padding: "70px" }}>
             <Box sx={{ width: 1 }}>
               <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={2}>
-                <Box gridColumn="span 8">
+                <Box gridColumn="span 12">
                   <h1
                     style={{
                       margin: "0px",
@@ -87,15 +80,15 @@ export default function Userpage() {
                   >
                     Loan Summary
                   </h1>
-
+                    <hr></hr>
                   <Item elevation="24">
                     {" "}
-                    <TableContainer component={Paper}>
+                    <TableContainer component={Paper} style={{"margin":"auto"}}>
                       <Table sx={{ minWidth: 650 }} aria-label="simple table">
                         <TableHead>
                           <TableRow>
                             <TableCell>Loan ID</TableCell>
-                            <TableCell align="right">Name</TableCell>
+                            <TableCell align="right">Loan Type</TableCell>
                             <TableCell align="right">Amount</TableCell>
                             <TableCell align="right">Status</TableCell>
                           </TableRow>
@@ -126,18 +119,7 @@ export default function Userpage() {
                   </Item>
                 </Box>
 
-                <Box gridColumn="span 4">
-                  <div
-                    style={{
-                      padding: "0px 20px ",
-
-                      display: "table",
-                      margin: " 0 auto",
-                    }}
-                  >
-                    
-                  </div>
-                </Box>
+            
               </Box>
             </Box>
           </div>
