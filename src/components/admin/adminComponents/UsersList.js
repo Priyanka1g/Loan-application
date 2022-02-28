@@ -55,6 +55,8 @@ export default function UsersList({ listName,applications,clicked,click,refresh}
 
   const [id,setId]=useState(0);
   const [loanApplications,setLoanApplications]=useState([]);
+  
+  const [view,setView]=useState(false);
 
   useEffect(()=>{
     let list=[];
@@ -150,20 +152,24 @@ export default function UsersList({ listName,applications,clicked,click,refresh}
                         );
                       })}
                       {listName === "requests" && (
+                        // !view?
                         <TableCell key="approveLoan" align="center">
-                          <div className={classes.actionButtons}>
-                            <Button
-                              variant="contained"
-                              sx={{ backgroundColor: "var(--blue)" }}
-                              onClick={()=>{
-                                clicked(false)
-                                setId(row.id)
-                              }}
-                            >
-                              View
-                            </Button>
-                          </div>
-                        </TableCell>
+                        <div className={classes.actionButtons}>
+                          <Button
+                            variant="contained"
+                            sx={{ backgroundColor: "var(--blue)" }}
+                            onClick={()=>{
+                              clicked(false)
+                              setId(row.id)
+                            }}
+                          >
+                            View
+                          </Button>
+                        </div>
+                      </TableCell>
+                      // :<TableCell key="approveLoan" align="center">
+                      //   <h1>Done</h1>
+                      // </TableCell>
                       )}
                     </TableRow>
                   );
@@ -175,6 +181,6 @@ export default function UsersList({ listName,applications,clicked,click,refresh}
         
       </Paper>
     </div>
-  </div>: <Userinfo id={id} refresh= {refresh} clicked={clicked}></Userinfo>
+  </div>: <Userinfo id={id} refresh= {refresh} clicked={clicked} view={view} setview={setView}></Userinfo>
   );
 }

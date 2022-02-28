@@ -35,7 +35,7 @@ function Admin() {
             rows.push({ 
               serialNo: index + 1,
               id:result.data.user_id,
-              name: result.data.user_name,
+              name: result.data.full_name,
               email: result.data.email,
               cibilScore: loan.cibil_score,
               loanType: loan.loan_purpose,
@@ -64,6 +64,7 @@ function refresh(){
   
   const [clicked,setClicked]=useState(true);
   const [item, setItem] = useState(0);
+  
 
   return (
     <>

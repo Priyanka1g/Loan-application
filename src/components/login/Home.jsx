@@ -33,10 +33,10 @@ export default function () {
           <div className={classes.links}>
             <div className={classes.big}>
               <a href="/applyloan">Login as User</a>
-              <a href="/admin/home">Login as Admin</a>
+              <a href="/adminlogin">Login as Admin</a>
             </div>
             <div className={classes.small}>
-              <a href="/admin/requests">Login as Admin</a>
+              <a href="/adminlogin">Login as Admin</a>
             </div>
           </div>
         </div>

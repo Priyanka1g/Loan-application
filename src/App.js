@@ -47,7 +47,7 @@ function App() {
                   ) : (
                     <Login
                       userlogin={loginhandler}
-                      adminlogin={adminloginhandler}
+                      // adminlogin={adminloginhandler}
                     ></Login>
                   )
                 }
@@ -55,18 +55,19 @@ function App() {
               <Route
                 path="/admin/*"
                 element={
-                  adminlogin ? (
+                  // adminlogin ? (
                     <Admin />
-                  ) : (
-                    <Login
-                      userlogin={loginhandler}
-                      adminlogin={adminloginhandler}
-                    ></Login>
-                  )
+                  // ) : (
+                  //   <Login
+                  //     userlogin={loginhandler}
+                  //     adminlogin={adminloginhandler}
+                  //   ></Login>
+                  // )
                 }
               />
               {/* <Route exact path="/login" element={<Login />} /> */}
               <Route exact path="/home" element={<UserHomePage />} />
+              <Route exact path="/adminlogin" element={<Login userlogin={loginhandler} ></Login>} />
             </Routes>
           </BrowserRouter>
         </div>

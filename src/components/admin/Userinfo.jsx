@@ -15,7 +15,7 @@ const axios = require("axios");
 export default function Userinfo(props) {
   const [customer,setCustomer]=useState({})
   const [user,setUser]=useState({})
-  const [isApproved,setApporved]=useState(0)
+  const [isApproved,setApporved]=useState(0);
 
   useEffect(() => {
     console.log("id-",props.id)
@@ -61,7 +61,7 @@ export default function Userinfo(props) {
         'Access-Control-Allow-Origin': '*',
       },
       data: JSON.stringify(customer),
-      success: window.alert("Applied Successfully"),
+      // success: window.alert("Applied Successfully"),
     }).then((res)=>{
         console.log("res",res);
     })
@@ -81,7 +81,16 @@ export default function Userinfo(props) {
         >
           User Info
         </h1>
-        
+        <button className={classes.mainbtn1}
+          onClick={() => {
+            props.clicked(true);
+            // props.refresh();
+          }}
+        >
+          
+          X <ExitToAppIcon  style={{"transform":"rotate(180deg)"}} />
+          
+        </button>
         
         <div className={classes.customerdata}>
         <table className={classes.ct}>
@@ -138,31 +147,20 @@ export default function Userinfo(props) {
         <div className={classes.button}>
           <button className={classes.btns} onClick={()=>{
                   setApporved(1);
+                  props.setview(true)
+                  window.location.href="http://localhost:3000/admin/home"
                 }}>
             Approve
           </button>
           <button type="button" className={classes.btns} style={{"backgroundColor":"red"}}onClick={()=>{
                   setApporved(-1);
+                  window.location.href="http://localhost:3000/admin/home"
                 }}>
             Reject
           </button>
           </div>
-          <div className={classes.mainbtn}>
-          <button className={classes.mainbtn1}
-          onClick={() => {
-            props.clicked(true);
-            // props.refresh();
-            window.location.href="http://localhost:3000/admin/requests"
-          }}
-        >
-          
-          Go Back To All Requested Loans Page <ExitToAppIcon  style={{"transform":"rotate(180deg)"}} />
-          
-        </button>
-
-   
-       
-        </div>
+          <br />
+          <br />
       </div>
   );
 }
